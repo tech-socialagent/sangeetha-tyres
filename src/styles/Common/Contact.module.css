@@ -1,0 +1,87 @@
+.sectionWrap {
+    padding: 0 4%;
+    margin-top: 4%;
+    display: flex;
+
+}
+
+.formWrap {
+    width: 50%;
+}
+
+.formWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 10%;
+}
+
+.formWrap h1 {
+    margin-bottom: 6%;
+}
+
+.formWrap input {
+    height: 32px;
+    border-radius: 4px;
+    border: 2px solid var(--Grey);
+    padding-left: 2%;
+}
+
+.formWrap textarea {
+    height: 150px;
+    border-radius: 4px;
+    border: 2px solid var(--Grey);
+    padding-left: 2%;
+}
+
+.chechBox {
+    display: flex;
+    align-items: center;
+}
+
+.formWrap input[type="checkbox"] {
+    width: 20px;
+}
+
+.formWrap input[type="submit"] {
+    margin-top: 6%;
+    width: 130px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: 500;
+    background: var(--Orange);
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+}
+
+
+
+
+.locWrap {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.socialIcon{
+    font-size: 26px;
+    color: #000;
+}
+
+.socialMedia{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.infoLink{
+    color: #000;
+    text-decoration: none;
+}

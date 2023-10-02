@@ -1,0 +1,28 @@
+.sectionWrap {
+    padding: 0 4%;
+    margin: 4% 0;
+    background: var(--Dark-blue);
+    display: flex;
+    padding-right: 0;
+}
+
+.contentWrap {
+    width: 50%;
+    color: #fff;
+    padding-top: 4%;
+}
+
+.contentWrap p {
+    color: #fff;
+    padding: 6% 0;
+}
+
+.readMore {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.img {
+    width: 50%;
+    height: auto;
+}

@@ -1,3 +1,49 @@
-*{
+* {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+
+:root {
+    --Dark-blue: #30426A;
+    /* --Light-blue:  */
+    --Orange: #F16101;
+    --Blue: #D8E8F5;
+    --Grey: #90908A;
+}
+
+
+
+h1 {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: 0px;
+    margin: 2px 0;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: 0px;
+    margin: 2px 0;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0px;
+    margin: 2px 0;
+}
+
+
+p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0px;
+    color: var(--Grey);
+    margin: 2px 0;
 }

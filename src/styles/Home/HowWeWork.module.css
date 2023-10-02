@@ -1,0 +1,35 @@
+.sectionWrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.top p {
+    width: 50%;
+    text-align: center;
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 3%;
+    gap: 20px;
+}
+
+.cardWrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon{
+    width: 100px;
+    height: 100px;
+}

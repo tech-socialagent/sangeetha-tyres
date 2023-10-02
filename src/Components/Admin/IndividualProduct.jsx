@@ -86,7 +86,7 @@ const AddProduct = ({ title }) => {
     e.preventDefault();
     const productData = {
       title: product.title,
-      description: product.description, 
+      description: product.description,
       // tyreBrand: tyreBrand,
       // vehicleBrand: vehicleBrand,
       // tyreSize: tyreSize,
@@ -95,7 +95,6 @@ const AddProduct = ({ title }) => {
       // tyreWidth: tyreWidth,
       // tyreAspect: tyreAspect,
       skuCode: product.skuCode, // Use product.skuCode instead of skuCode
-      images: imageUrls,
     };
 
 
@@ -183,7 +182,16 @@ const AddProduct = ({ title }) => {
           {/* <input type="text" id="tyreBrand" name="tyreBrand" placeholder='Enter the Brand Name' required /> */}
 
           <div className={styles.select}>
-            <select id="tyrebrand" name="tyrebrand">
+            <select id="tyrebrand" name="tyrebrand"
+              // value={product.}
+              // onChange={(e) =>
+              //   setProduct(prevProductData => ({
+              //     ...prevProductData,
+              //     title: e.target.value,
+              //   }))
+              // }
+              // required
+              >
               {
                 tyreBrand.map((item, key) => (
                   <option key={key} value="">{item.value}</option>

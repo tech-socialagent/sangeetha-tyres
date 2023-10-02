@@ -1,5 +1,10 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
+import HowWeWork from '@/Components/Home/HowWeWork'
+import CarSection from '@/Components/Home/CarSection'
+import TyreBrands from '@/Components/Home/TyreBrands'
+import OurVision from '@/Components/Home/OurVision'
+import Contact from '@/Components/Common/Contact'
 
 
 export default function Home() {
@@ -12,7 +17,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
-        
+        <HowWeWork />
+        <CarSection />
+        <TyreBrands />
+        <OurVision />
+        <Contact />
       </>
     </>
   )
