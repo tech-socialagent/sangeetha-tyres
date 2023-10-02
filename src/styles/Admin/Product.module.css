@@ -1,0 +1,104 @@
+.addProduct {
+    padding: 2% 10%;
+
+}
+
+.titleBackWrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: larger;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #F1F1F1;
+    padding: 2% 0;
+    border-radius: 0px 10px 10px 10px;
+}
+
+
+.rightWrap {
+    width: 30%;
+}
+
+.inputForm {
+    width: 70%;
+    padding-top: 4%;
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.large {
+    width: 100%;
+    background: #fff;
+    padding: 2%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    margin-top: 10px;
+}
+
+.medium {
+    width: 45%;
+    background: #fff;
+    padding: 2%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    margin-top: 10px;
+}
+
+.inputForm input {
+    padding: 8px 0px;
+    padding-left: 6px;
+    border-radius: 6px;
+    border: 1px solid #0000006f;
+    margin-top: 10px;
+    height: min-content;
+}
+
+.inputForm textarea {
+    padding: 8px 0px;
+    padding-left: 6px;
+    border-radius: 6px;
+    border: 1px solid #0000006f;
+    margin-top: 10px;
+    height: min-content;
+    min-height: 100px;
+}
+
+.inputForm input[type='file'] {
+    padding: 8px 0px;
+    padding-left: 6px;
+    border-radius: 6px;
+    margin-top: 10px;
+    height: min-content;
+}
+
+.previewImg {
+    width: 45%;
+    object-fit: contain;
+}
+
+/* select */
+.select {
+    display: flex;
+    align-items: center;
+}
+
+.inputForm select {
+    padding: 8px 0px;
+    padding-left: 6px;
+    border-radius: 6px;
+    border: 1px solid #0000006f;
+    height: min-content;
+    width: 80%;
+}
+.addIcon{
+    width: 20%;
+    font-size: 35px;
+    cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.adminDashboard {
+    display: flex;
+}
+
+.leftFilter {
+    width: 20%;
+    /* height: 97.5vh; */
+    background: #EBEBEB;
+}
+
+.rightDash {
+    width: 80%;
+    background: #F1F1F1;
+    padding-left: 2%;
+}
