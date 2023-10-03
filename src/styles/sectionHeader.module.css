@@ -1,0 +1,28 @@
+.sectionHeader{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.sectionHeader h2{
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.sectionHeader p{
+    width: 70%;
+    font-size: 12px;
+    color: var(--dark-gray);
+}
+
+@media (max-width: 750px) {
+    .sectionHeader h2{
+        font-size: 18px;
+    }
+
+    .sectionHeader p{
+        width: 100%;
+        font-size: 11px;
+    }
+}
