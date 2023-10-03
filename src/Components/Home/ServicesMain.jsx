@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styles from '@/styles/Home/ServicesMain.module.css';
-import SectionHeader from '../sectionHeader';
+import SectionHeader from '../SectionHeader';
 import Image from 'next/image';
 import { serviceData } from '@/data';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
