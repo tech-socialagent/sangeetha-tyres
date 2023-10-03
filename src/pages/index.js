@@ -5,6 +5,8 @@ import CarSection from '@/Components/Home/CarSection'
 import TyreBrands from '@/Components/Home/TyreBrands'
 import OurVision from '@/Components/Home/OurVision'
 import Contact from '@/Components/Common/Contact'
+import ServicesMain from '@/Components/Home/ServicesMain'
+import Header from '@/Components/Home/Header'
 
 
 export default function Home() {
@@ -17,6 +19,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
+        <Header />
+        <ServicesMain />
         <HowWeWork />
         <CarSection />
         <TyreBrands />
