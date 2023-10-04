@@ -12,7 +12,7 @@ const Navbar = () => {
                 <Image src='' alt='TYRES' width={1000} height={1000} className={styles.navbarLogo} />
                 <ul className={styles.navbarMenus}>
                     <li>Home</li>
-                    <li>Services</li>
+                    <li>Services</li> 
                     <li>Contact us</li>
                 </ul>
                 <div className={styles.navbarIcons}>

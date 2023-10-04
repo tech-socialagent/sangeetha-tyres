@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '@/styles/sectionHeader.module.css';
 
-const SectionHeader = ({ title, desc, pad }) => {
+const SectionHeader = ({ title, desc, pad, align, justify }) => {
     return (
-        <div className={styles.sectionHeader} style={{padding: pad}}>
+        <div className={styles.sectionHeader} style={{padding: pad, textAlign: align, alignItems: align}}>
             <h2>
                 {title}
             </h2>

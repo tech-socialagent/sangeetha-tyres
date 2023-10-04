@@ -1,11 +1,11 @@
 .servicesWrap{
-    padding: 0% 3%;
+    padding:3% 3% 6%;
 }
 
 .servicesMain{
     display: grid;
-    grid-template-columns: 5% 90% 5%;
-    padding: 1% 0;
+    grid-template-columns: 4% 92% 4%;
+    margin: 3% 0 5%;
 }
 
 .left{
@@ -15,7 +15,7 @@
 }
 
 .left span{
-    font-size: 35px;
+    font-size: 40px;
     color: var(--Orange);
     cursor: pointer;
 }
@@ -32,16 +32,16 @@
 }
 
 .eachService{
-    min-width: 250px;
+    min-width: 310px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .eachImageContainer{
     position: relative;
-    width: 250px;
-    height: 190px;
+    width: inherit;
+    height: 240px;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -61,16 +61,17 @@
     outline: none;
     border: none;
     background-color: var(--Orange);
-    padding: 6px;
+    padding: 6px 10px;
     border-radius: 20px;
-    font-size: 12.5px;
+    font-size: 14px;
     font-weight: 400;
     color: #fff;
     cursor: pointer;
 }
 
 .eachService p{
-    font-size: 14px;
+    font-size: var(--Para);
+    color: var(--Grey);
 }
 
 .eachbottom{
@@ -85,7 +86,7 @@
 
 .eachbottom h5{
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 18px;
     padding: 2px 0px;
     border: none;
 }
@@ -101,3 +102,21 @@
     font-size: 13px;
 }
 
+.textContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.text{
+    width: max-content;
+    padding: 28px 90px;
+    background-color: var(--Dark-blue);
+    border-radius: 30px;
+}
+
+.text h2{
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #fff;
+}
