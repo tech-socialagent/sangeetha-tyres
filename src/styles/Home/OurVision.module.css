@@ -9,20 +9,38 @@
 .contentWrap {
     width: 50%;
     color: #fff;
-    padding-top: 4%;
+    padding: 4% 3% 12%;
+}
+
+.contentWrap h1{
+    font-size: 36px;
+    /* font-weight: 600; */
 }
 
 .contentWrap p {
     color: #fff;
-    padding: 6% 0;
+    padding: 4% 0;
+    font-size: var(--Para);
+    font-weight: 300;
 }
 
 .readMore {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
     cursor: pointer;
+}
+
+.readMore p{
     text-decoration: underline;
+}
+
+.readMore span{
+    display: flex;
 }
 
 .img {
     width: 50%;
     height: auto;
+    object-fit: cover;
 }

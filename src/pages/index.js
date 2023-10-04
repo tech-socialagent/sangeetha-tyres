@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
 import HowWeWork from '@/Components/Home/HowWeWork'
 import CarSection from '@/Components/Home/CarSection'
 import TyreBrands from '@/Components/Home/TyreBrands'
@@ -7,7 +6,9 @@ import OurVision from '@/Components/Home/OurVision'
 import Contact from '@/Components/Common/Contact'
 import ServicesMain from '@/Components/Home/ServicesMain'
 import Header from '@/Components/Home/Header'
-
+import Navbar from '@/Components/Navbar'
+import Testimonials from '@/Components/Common/testimonials'
+import Faq from '@/Components/Common/faq'
 
 export default function Home() {
   return (
@@ -19,13 +20,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
+        <Navbar />
         <Header />
         <ServicesMain />
         <HowWeWork />
         <CarSection />
         <TyreBrands />
         <OurVision />
+        <Testimonials />
         <Contact />
+        <Faq />
       </>
     </>
   )

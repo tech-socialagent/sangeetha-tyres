@@ -1,0 +1,80 @@
+.navbarWrap{
+    height: 125px;
+    display: grid;
+    grid-template-rows: 55% 45%;
+}
+
+.navbarTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3%;    
+}
+
+.navbarLogo{
+    height: 40px;
+    width: 150px;
+}
+
+.navbarMenus{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navbarMenus li{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.navbarIcons{
+
+}
+
+.navbarBottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.BottomLeft{
+    display: flex;
+}
+
+.brands, .center{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0 18px;
+}
+
+.brands{
+    color: #fff;
+    background-color: var(--BtnColor);
+}
+
+.center{
+    padding: 0 22px;
+}
+
+.brands p, .center p{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.brands span{
+    display: flex;
+    font-size: 14px;
+}
+
+.navbarBtn{
+    border: none;
+    background-color: var(--Orange);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 550;
+    text-transform: uppercase;
+    padding: 0 30px;
+}

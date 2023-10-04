@@ -20,7 +20,7 @@ const ServicesMain = () => {
 
     return (
         <div className={styles.servicesWrap}>
-            <SectionHeader title='Our Services' desc='' pad='0 2%'/>
+            <SectionHeader title='Our Services' desc='' pad='0 2%' />
             <div className={styles.servicesMain}>
                 <div className={styles.left}><span onClick={() => slide(-300)}><IoIosArrowDropleftCircle /></span></div>
                 <div className={styles.servicesContainer} ref={scrl}>
@@ -39,6 +39,11 @@ const ServicesMain = () => {
                     ))}
                 </div>
                 <div className={styles.left}><span onClick={() => slide(+300)}><IoIosArrowDroprightCircle /></span></div>
+            </div>
+            <div className={styles.textContainer}>
+                <div className={styles.text}>
+                    <h2>Our tires are pros at the 'age-defying' game – they just keep rolling back the years</h2>
+                </div>
             </div>
         </div>
     )
