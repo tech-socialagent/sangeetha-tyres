@@ -3,13 +3,36 @@
 }
 
 .leftFilter {
-    width: 20%;
-    /* height: 97.5vh; */
+    width: 300px;
+    height: 99vh;
     background: #EBEBEB;
+    padding: 4% 0;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
+.filterItem {
+    padding: 4% 0%;
+    padding-left: 10%;
+    font-size: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.filterItemActive {
+    background: #fff;
+    padding: 4% 0%;
+    padding-left: 10%;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+
+
+/* Right */
 .rightDash {
-    width: 80%;
-    background: #F1F1F1;
+    width: 100%;
+    background: #ffffff;
     padding-left: 2%;
 }

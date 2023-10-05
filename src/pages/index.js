@@ -8,7 +8,7 @@ import ServicesMain from '@/Components/Home/ServicesMain'
 import Header from '@/Components/Home/Header'
 import Navbar from '@/Components/Navbar'
 import Testimonials from '@/Components/Common/testimonials'
-import Faq from '@/Components/Common/faq'
+import Faq from '@/Components/Common/Faq'
 
 export default function Home() {
   return (

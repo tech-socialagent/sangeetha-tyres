@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
-import styles from '@/styles/Admin/Product.module.css';
+import styles from '@/styles/Admin/AddNewProduct.module.css';
 import Image from 'next/image';
 import db from '../../FirebaseConfig'
-import { collection, getDocs, query, where, onSnapshot, addDoc } from "firebase/firestore";
+import { collection, getDocs, query, where, onSnapshot, addDoc, doc, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { IoMdAddCircleOutline } from 'react-icons/io'
 import { PopupContext } from '@/Context';
 import AddItemPopup from './AddItemPopup';
+import { GrCloudUpload } from 'react-icons/gr'
 
-const AddProduct = ({ title }) => {
+const AddNewProduct = ({ title, productData }) => {
   // State for file previews
   const [filePreviews, setFilePreviews] = useState([]);
+  const [notSaved, setNotSaved] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // State for product data
   const [product, setProduct] = useState({
@@ -44,6 +47,7 @@ const AddProduct = ({ title }) => {
 
   // Function to handle file uploads
   const handleFileChange = (e) => {
+    setNotSaved(true)
     const files = e.target.files;
     const previews = [];
 
@@ -144,7 +148,10 @@ const AddProduct = ({ title }) => {
     getData("TyreType");
     getData("TyreWidth");
     getData("TyreAspect");
+
   }, []);
+
+
 
   // Firebase Storage instance
   const storage = getStorage();
@@ -152,6 +159,7 @@ const AddProduct = ({ title }) => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     // Check if a product with the same SKU code already exists
     const skuCodeQuery = query(
@@ -163,6 +171,7 @@ const AddProduct = ({ title }) => {
     if (!skuCodeQuerySnapshot.empty) {
       // A product with the same SKU code already exists
       // You can handle this case here (e.g., show an error message)
+      setLoading(false)
       alert('A product with the same SKU code already exists.');
     } else {
       // No product with the same SKU code exists, proceed to add the product
@@ -177,6 +186,7 @@ const AddProduct = ({ title }) => {
       }
 
       // Create the product data with image URLs
+      let currentDateTime = new Date();
       const productData = {
         title: product.title,
         description: product.description,
@@ -189,10 +199,12 @@ const AddProduct = ({ title }) => {
         price: product.price,
         skuCode: product.skuCode,
         images: imageUrls,
+        updatedTime: currentDateTime.toLocaleString(),
       };
 
       // Add product data to Firestore
-      await addDoc(collection(db, 'products'), productData);
+      await setDoc(doc(db, "products",  product.skuCode), productData);
+      // await addDoc(collection(db, 'products', product.skuCode), productData);
 
       // Clear the form fields and file previews after successful submission
       setProduct({
@@ -208,21 +220,27 @@ const AddProduct = ({ title }) => {
         skuCode: '',
       });
       setFilePreviews([]);
-      alert("Product Added")
+      setLoading(false)
+      setNotSaved(false)
     }
   };
 
 
   return (
     <form className={styles.addProduct} onSubmit={handleSubmit} >
+
+      {/* Loading  */}
+      {loading && (
+        <div className={styles.loadingWrap}>
+          <GrCloudUpload className={styles.loadingIcon} />
+        </div>
+      )}
+
       <div className={styles.titleBackWrap}>
         <div className={styles.title}>
           {title ? title : 'Add Product'}
         </div>
-        <div className={styles.saveCloseBtn}>
-          <button>Close</button>
-          <input type="submit" value='Save' />
-        </div>
+
       </div>
 
       <div className={styles.inputForm}>
@@ -234,11 +252,12 @@ const AddProduct = ({ title }) => {
             name="title"
             placeholder='Enter the title'
             value={product.title}
-            onChange={(e) =>
+            onChange={(e) => {
               setProduct(prevProductData => ({
                 ...prevProductData,
                 title: e.target.value,
-              }))
+              })), setNotSaved(true)
+            }
             }
             required
           />
@@ -250,11 +269,12 @@ const AddProduct = ({ title }) => {
             name="description"
             placeholder='Enter the description'
             value={product.description}
-            onChange={(e) =>
+            onChange={(e) => {
               setProduct(prevProductData => ({
                 ...prevProductData,
                 description: e.target.value,
-              }))
+              })), setNotSaved(true)
+            }
             }
             required
           />
@@ -400,11 +420,12 @@ const AddProduct = ({ title }) => {
             id="price"
             name="price"
             placeholder="Enter the Price"
-            onChange={(e) =>
+            onChange={(e) => {
               setProduct((prevProductData) => ({
                 ...prevProductData,
                 price: e.target.value,
-              }))
+              })), setNotSaved(true)
+            }
             }
             required
           />
@@ -417,11 +438,12 @@ const AddProduct = ({ title }) => {
               id="tyreType"
               name="tyreType"
               value={product.TyreType}
-              onChange={(e) =>
+              onChange={(e) => {
                 setProduct((prevProductData) => ({
                   ...prevProductData,
                   TyreType: e.target.value,
-                }))
+                })), setNotSaved(true)
+              }
               }
               required
             >
@@ -438,7 +460,7 @@ const AddProduct = ({ title }) => {
                   id: tyreType.length,
                   popupTitle: "Tyre Type",
                   docName: "TyreType",
-                }));
+                }))
               }}
             />
           </div>
@@ -451,11 +473,12 @@ const AddProduct = ({ title }) => {
               id="tyreWidth"
               name="tyreWidth"
               value={product.tyreWidth}
-              onChange={(e) =>
+              onChange={(e) => {
                 setProduct((prevProductData) => ({
                   ...prevProductData,
                   tyreWidth: e.target.value,
-                }))
+                })), setNotSaved(true)
+              }
               }
               required
             >
@@ -485,11 +508,12 @@ const AddProduct = ({ title }) => {
               id="tyreAspect"
               name="tyreAspect"
               value={product.tyreAspect}
-              onChange={(e) =>
+              onChange={(e) => {
                 setProduct((prevProductData) => ({
                   ...prevProductData,
                   tyreAspect: e.target.value,
-                }))
+                })), setNotSaved(true)
+              }
               }
               required
             >
@@ -520,16 +544,21 @@ const AddProduct = ({ title }) => {
             name="skuCode"
             placeholder="Enter the SKU Code"
             value={product.skuCode}
-            onChange={(e) =>
+            onChange={(e) => {
               setProduct((prevProductData) => ({
                 ...prevProductData,
                 skuCode: e.target.value,
-              }))
+              })), setNotSaved(true)
+            }
             }
             required
           />
         </div>
+        <div className={styles.saveCloseBtn}>
+          <input type="submit" value='Save' className={notSaved ? styles.notSaved : styles.saveBtn} />
+        </div>
       </div>
+
 
       {
         popupActive ? (
@@ -544,11 +573,10 @@ const AddProduct = ({ title }) => {
       }
 
       <div className={styles.rightWrap}>
-        {/* Additional content */}
       </div>
     </form >
   );
 };
 
-export default AddProduct;
+export default AddNewProduct;
 

@@ -1,0 +1,35 @@
+.loginWrap{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 20%;
+}
+
+.inputWrap{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.inputWrap label{
+    font-size: larger;
+}
+
+.inputWrap input{
+    font-size: large;
+    padding: 3% 1%;
+    border: 1px solid #000;
+}
+
+.loginForm input[type="submit"]{
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+}
