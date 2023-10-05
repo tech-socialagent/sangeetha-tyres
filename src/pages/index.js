@@ -6,7 +6,6 @@ import OurVision from '@/Components/Home/OurVision'
 import Contact from '@/Components/Common/Contact'
 import ServicesMain from '@/Components/Home/ServicesMain'
 import Header from '@/Components/Home/Header'
-import Navbar from '@/Components/Navbar'
 import Testimonials from '@/Components/Common/testimonials'
 import Faq from '@/Components/Common/Faq'
 
@@ -20,7 +19,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
-        <Navbar />
         <Header />
         <ServicesMain />
         <HowWeWork />

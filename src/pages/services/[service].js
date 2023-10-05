@@ -3,18 +3,17 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { serviceData } from '../../data'
 import { useEffect, useState } from 'react'
+import AllServices from '@/Components/Services/allServices'
+import ServiceCard from '@/Components/Services/ServiceCard'
 
 export default function Home() {
     const route = useRouter();
     // const { path } = router.query;
     const path = route.query.service
-    console.log("path", path);
 
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        console.log("path", path);
-
         if (path) {
             const matchedService = serviceData.find((item) => item.id === path);
             if (matchedService) {
@@ -24,8 +23,6 @@ export default function Home() {
         }
 
     }, [path]);
-
-
 
     return (
         <>
@@ -37,6 +34,8 @@ export default function Home() {
             </Head>
             <>
                 <ServiceHero data={data} />
+                <ServiceCard data={data} />
+                <AllServices text={false}/>
             </>
         </>
     )

@@ -7,12 +7,10 @@ module.exports = nextConfig
 
 const withVideos = require('next-videos')
 
-
-
 module.exports = withVideos()
 
-module.exports = {
-  images: {
-    domains: ['firebasestorage.googleapis.com'],
-  },
-};
+// module.exports = {
+//   images: {
+//     domains: ['firebasestorage.googleapis.com'],
+//   },
+// };

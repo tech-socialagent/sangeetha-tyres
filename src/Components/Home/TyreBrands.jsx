@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '@/styles/Home/TyreBrands.module.css'
 import Image from 'next/image'
-import SectionHeader from '../SectionHeader'
+import SectionHeader from '../Common/SectionHeader'
 
 const TyreBrands = () => {
 

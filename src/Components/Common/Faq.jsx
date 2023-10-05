@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/Common/Faq.module.css';
-import SectionHeader from '../SectionHeader';
+import SectionHeader from './SectionHeader';
 import { AiFillCloseCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
 const Faq = () => {
+
+    const [ active, setActive ] = useState('01');
 
     const faqData = [
         {
@@ -33,17 +35,19 @@ const Faq = () => {
             <SectionHeader title="FAQ's" desc="Tyre Talk! The secrets for a Gripping and Safe Ride." />
             <div className={styles.faqMain}>
                 {faqData.map((item, id) => (
-                    <div className={styles.eachFaq} key={id}>
+                    <div className={styles.eachFaq} key={id} style={{backgroundColor: item.num === active ? '#d8e8f5' : '#ecf2f6'}} onClick={() => setActive(item.num)}>
                         <div className={styles.eachLeft}>
                             <span>{item.num}</span>
                         </div>
                         <div className={styles.eachRight}>
                             <h3>{item.ques}</h3>
-                            <p>{item.ans}</p>
+                            <p
+                                style={{opacity: item.num === active ? '1' : '0', lineHeight: item.num === active ? '16px' : '0px'}}
+                            >{item.ans}</p>
                         </div>
                         <div className={styles.close}>
-                            <span><AiOutlinePlusCircle /></span>
-                            <span><AiFillCloseCircle /></span>
+                            { item.num !== active && <span onClick={() => setActive(item.num)}><AiOutlinePlusCircle /></span>}
+                            { item.num === active && <span onClick={() => setActive('00')}><AiFillCloseCircle /></span>}
                         </div>
                     </div>
                 ))}

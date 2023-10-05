@@ -3,19 +3,30 @@
 }
 
 .faqMain{
-
+    margin: 3% 0%;
+    padding: 4% 12%;
+    background-color: #f3f5f6;
+    border-radius: 15px;
 }
 
 .eachFaq{
-
+    padding: 5% 0 2%;
+    display: grid;
+    grid-template-columns: 12% auto 12%;
+    background-color: #ecf2f6;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
 }
 
 .eachLeft{
-
+    display: flex;
+    justify-content: center;
 }
 
 .eachLeft span{
-
+    font-size: 34px;
+    font-weight: 700;
+    color:#9D96A8;
 }
 
 .eachRight{
@@ -23,17 +34,29 @@
 }
 
 .eachRight h3{
-
+    font-size: 21px;
+    font-weight: 700;
 }
 
 .eachRight p{
-
+    margin-top: 2%;
+    font-size: var(--Para);
+    color: var(--Dark-grey);
+    line-height: 0px;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
 }
 
 .close{
-
+    display: flex;
+    justify-content: center;
 }
 
 .close span{
-    
+    display: flex;
+    border-radius: 50%;
+    font-size: 21px;
+    background-color: #fff;
+    height: max-content;
+    cursor: pointer;
 }

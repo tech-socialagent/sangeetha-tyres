@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '@/styles/Navbar.module.css';
+import styles from '@/styles/Common/Navbar.module.css';
 //import { AiOutlineSearch } from 'react-icons/ai';
 //import { IoLocationOutline } from 'react-icons/io';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
