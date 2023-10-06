@@ -1,0 +1,41 @@
+import React from 'react';
+import styles from '@/styles/Services/serviceCard.module.css';
+import Image from 'next/image';
+
+const ServiceCard = ({ data }) => {
+    if (!data) {
+        return null;
+    }
+    return (
+        <div className={styles.cardWrap}>
+            <div className={styles.cards}>
+                {data.card.map((data, id) => (
+                    // <div className={ id === 1 ? styles.secondCard : styles.eachCard}>
+                    <div className={ styles.eachCard}>
+                        <Image src={data.cardImg} alt='card iamge' width={1000} height={1000} className={styles.cardImage} />
+                        <div className={styles.cardContent}>
+                            <h3>{data.cardTitle}</h3>
+                            <p>{data.cardDesc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className={styles.cardAbout}>
+                <h6>About {data.name}</h6>
+                <h2>We Provide The Best Service for the {data.aboutTitle}</h2>
+                <p>{data.aboutDesc}</p>
+                <div className={styles.bookAbout}>
+                    <Image src={data.bookImg} width={1000} height={1000} className={styles.bookImage} />
+                    <div className={styles.bookRight}>
+                        {/* There will be sapn content */}
+                        <h3>{data.bookTitle}</h3>
+                        <p>{data.bookDesc}</p>
+                        <button>BOOK AN APPOINTMENT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default ServiceCard;

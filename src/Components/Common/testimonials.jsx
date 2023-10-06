@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '@/styles/Common/testimonials.module.css';
-import SectionHeader from '../SectionHeader';
+import SectionHeader from './SectionHeader';
 import { BiSolidQuoteAltLeft } from 'react-icons/bi';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -34,32 +34,32 @@ const Testimonials = () => {
     const data = [
         {
             id: 1,
-            review: `I highly recommend Sangeetha Tyres, especially for Mercedes owners like Robert! His driving experience has significantly improved, thanks to their exceptional quality tires and consistently friendly customer service. Their commitment to excellence truly enhances the overall ownership experience`,
-            name: 'Arjun',
+            review: `Prompt attention extended on services of Hearing Aid, supplied to me and all timely and efficient support given to me all these years is indeed an excellant job which I convey to yourTeam.Thanking you`,
+            name: 'Mohan P',
         },
         {
             id: 2,
-            review: `Sangeetha Tyre has remarkably transformed my Audi's performance! My car rides exceptionally smoothly now, all thanks to their top-notch products and highly skilled staff. Their exceptional dedication to excellence truly sets them apart in the industry.`,
-            name: 'Karthik',
+            review: `She has been using your machine since 25 years. Very happy with the product and the service provided.`,
+            name: 'Yogendra Singh Rawat',
         },
         {
             id: 3,
-            review: `Highly Impressed by Sangeetha Tyre's Expertise! My Innova handles like an absolute dream, all thanks to their unwavering commitment to delivering reliable, durable, and top-quality tires`,
-            name: 'Raheem Khan',
+            review: `Last 20 years i am using Siemens hearing aid from Shreya. And I always go to Shreya Indiranagar center. The service and suggestions they offered me over the years is awesome.`,
+            name: 'Vinayak Koparkar',
         },
         {
             id: 4,
-            review: `I highly recommend Sangeetha Tyres, especially for Mercedes owners like Robert! His driving experience has significantly improved, thanks to their exceptional quality tires and consistently friendly customer service. Their commitment to excellence truly enhances the overall ownership experience`,
-            name: 'Arjun',
+            review: `I have been a satisfied client of Shreya for two decades now. The service I have received from every member of the team has been consistent as well as professional. Thank You.`,
+            name: 'Dev',
         },
         {
             id: 5,
             review: `Sangeetha Tyre has remarkably transformed my Audi's performance! My car rides exceptionally smoothly now, all thanks to their top-notch products and highly skilled staff. Their exceptional dedication to excellence truly sets them apart in the industry.`,
-            name: 'Karthik',
+            name: 'Jeelani Herial',
         },
         {
             id: 6,
-            review: `Highly Impressed by Sangeetha Tyre's Expertise! My Innova handles like an absolute dream, all thanks to their unwavering commitment to delivering reliable, durable, and top-quality tires`,
+            review: `I have been using services from Shreya hearing clinic for more than ten years the service is exceptional. Ms Mona has been helpful in clarifying and addressing all the needs related to instrument and service .`,
             name: 'Raheem Khan',
         },
     ];

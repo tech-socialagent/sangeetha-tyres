@@ -1,0 +1,102 @@
+.cardWrap{
+    margin: 6% 8%;
+
+    display: grid;
+    grid-template-columns: 50% auto ;
+    gap: 2rem;
+}
+
+.cards{
+    display: flex;
+    gap: 2.5rem;
+}
+
+/* .secondCard{
+    flex: 1;
+    position: relative;
+    margin-top: 5%;
+} */
+
+.eachCard{
+    flex: 1;
+    position: relative;
+}
+
+.cardImage{
+    width: 100%;
+    height: 450px;
+}
+
+.cardContent{
+    position: absolute;
+    bottom: -40px;
+    left: 7.5%;
+    background-color: #fff;
+    width: 85%;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.7rem;
+    padding: 20px 18px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;}
+
+.cardContent h3{
+    font-size: 18px;
+}
+
+.cardContent h3 span{
+    color: var(--Orange);
+}
+
+.cardContent p{
+    font-size: 11px;
+    line-height: 17px;
+    font-weight: 550;
+    color: var(--Dark-grey);
+}
+
+.cardAbout{
+
+}
+
+.cardAbout h6{
+
+}
+
+.cardAbout h2{
+
+}
+
+.cardAbout p{
+
+}
+
+.bookAbout{
+
+}
+
+.bookImage{
+    width: 100px;
+    height: 100px;
+}
+
+.bookRight{
+
+}
+
+.bookRight span{
+
+}
+
+.bookRight h3{
+    
+}
+
+.bookRight p{
+    
+}
+
+.bookRight button{
+    
+}

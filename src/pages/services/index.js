@@ -1,4 +1,8 @@
+import Contact from '@/Components/Common/Contact'
+import Faq from '@/Components/Common/Faq'
+import ServiceBanner from '@/Components/Services/ServiceBanner'
 import ServiceHero from '@/Components/Services/ServiceHero'
+import AllServices from '@/Components/Services/allServices'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -17,7 +21,10 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <>
-                <ServiceHero />
+                <ServiceBanner />
+                <AllServices />
+                <Contact />
+                <Faq />
             </>
         </>
     )

@@ -1,0 +1,140 @@
+.footerWrap{
+    background-color: var(--Dark-blue);
+    color: #fff;
+    padding: 3% 6% 6%;
+
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+.footerLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footerLogo{
+
+}
+
+.logo{
+
+}
+
+.subscribe{
+    
+}
+
+.subscribe h5{
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+.inputContainer{
+    margin: 2% 0;
+    display: flex;
+}
+
+.inputContainer input{
+    width: 38%;
+    padding: 14px;
+    outline: none;
+    border: none;
+    border-radius: 7px 0px 0px 7px;
+}
+
+.inputContainer input::placeholder{
+    color: var(--Grey);
+    font-family: 'Arial';
+}
+
+.inputContainer button{
+    border-radius: 0px 7px 7px 0px;
+    border: 1px solid var(--Orange);
+    background-color: var(--Orange);
+    width: 60px;
+
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.subscribe p{
+    margin-top: 5%;
+    color: #ffffff6e;
+    font-size: 14.5px;
+    font-size: 200;
+    width: 55%;
+}
+
+.footerRight{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.footerTop{
+    display: grid;
+    grid-template-columns: 41% auto max-content;
+}
+
+.menus{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.menus h3{
+    font-size: 14.5px;
+    font-weight: 600;
+}
+
+.menus ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.menu{
+    color: #ffffff6e;
+    font-size: 14.5px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.footerBottom{
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #0A142F1e;
+    padding-top: 7%;
+}
+
+.terms{
+
+}
+
+.terms ul{
+    display: flex;
+    gap: 2rem;
+}
+
+.terms ul li{
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.icons{
+    display: flex;
+    gap: 1rem;
+}
+
+.eachIcon{
+    display: flex;
+    border: 2px solid #ffffff1e;
+    border-radius: 50%;
+    cursor: pointer;
+
+    padding: 7px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '@/styles/sectionHeader.module.css';
+import styles from '@/styles/Common/sectionHeader.module.css';
 
 const SectionHeader = ({ title, desc, pad, align, justify }) => {
     return (
