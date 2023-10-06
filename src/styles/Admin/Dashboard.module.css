@@ -1,10 +1,13 @@
 .adminDashboard {
     display: flex;
+    position: relative;
+    height: 100vh;
+    overflow: auto; 
 }
 
 .leftFilter {
     width: 300px;
-    height: 99vh;
+    min-height: 99vh;
     background: #EBEBEB;
     padding: 4% 0;
     position: sticky;
