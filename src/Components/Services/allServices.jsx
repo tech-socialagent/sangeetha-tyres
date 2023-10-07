@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { serviceData } from '@/data';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import Image from 'next/image';
+import SectionHeader from '../Common/SectionHeader';
 
 const AllServices = ({text}) => {
 
@@ -25,6 +26,7 @@ const AllServices = ({text}) => {
 
     return (
         <>
+            { serviceData.length > display.length && <SectionHeader title=<>Other <span style={{color:'var(--Orange)'}}> Services</span></> align='center'/>}
             <div className={styles.servicesContainer}>
                 {display.map((item) => (
                     <div className={styles.eachService}>

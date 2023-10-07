@@ -1,4 +1,4 @@
-.servicesContainer{
+.servicesContainer {
     margin: 5%;
     /* overflow: scroll !important; */
     display: flex;
@@ -8,11 +8,11 @@
     row-gap: 4rem;
 }
 
-.servicesContainer::-webkit-scrollbar{
+.servicesContainer::-webkit-scrollbar {
     display: none;
 }
 
-.eachService{
+.eachService {
     flex: 1;
     min-width: 310px;
     max-width: 310px;
@@ -21,7 +21,7 @@
     gap: 1.5rem;
 }
 
-.eachImageContainer{
+.eachImageContainer {
     position: relative;
     width: 100%;
     height: 240px;
@@ -29,13 +29,13 @@
     overflow: hidden;
 }
 
-.eachImage{
+.eachImage {
     width: inherit;
     height: inherit;
     object-fit: cover;
 }
 
-.serviceBooking{
+.serviceBooking {
     position: absolute;
     top: 25px;
     right: 10px;
@@ -52,12 +52,12 @@
     cursor: pointer;
 }
 
-.eachService p{
+.eachService p {
     font-size: var(--Para);
     color: var(--Grey);
 }
 
-.eachbottom{
+.eachbottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,59 +67,87 @@
     transition: all 0.1s ease-in-out;
 }
 
-.eachbottom h5{
+.eachbottom h5 {
     text-transform: uppercase;
     font-size: 18px;
     padding: 2px 0px;
     border: none;
 }
 
-.eachbottom:hover{
+.eachbottom:hover {
     color: var(--Orange);
     border-bottom: 1px solid var(--Orange);
     padding: 2px 0px;
 }
 
-.eachbottom span{
+.eachbottom span {
     display: flex;
     font-size: 13px;
 }
 
 /* Text Bottom */
 
-.textContainer{
+.textContainer {
+    margin: 0 0 5%;
     display: flex;
     justify-content: center;
 }
 
-.text{
+.text {
     width: max-content;
     padding: 28px 90px;
     background-color: var(--Dark-blue);
     border-radius: 30px;
 }
 
-.text h2{
+.text h2 {
     font-size: 24px;
     font-weight: 600;
     text-transform: capitalize;
     color: #fff;
 }
 
+@media (max-width: 1200px) {
+    .text {
+        padding: 28px 5%;
+    }
+
+    .text h2 {
+        font-size: 20px;
+    }
+}
+
 @media (max-width: 750px) {
-    .servicesContainer{
+    .servicesContainer {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
-    .eachService{
+
+    .eachService {
         min-width: 100%;
         max-width: 100%;
+        gap: 1rem;
+    }
+
+    .text {
+        padding: 24px 4%;
+    }
+
+    .text h2 {
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
     }
 }
 
 @media (max-width: 550px) {
-    .servicesContainer{
+    .servicesContainer {
         display: grid;
         grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+
+    .eachService {
+        gap: 0.5rem;
     }
 }

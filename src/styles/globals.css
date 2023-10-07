@@ -2,13 +2,14 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 html,
 body {
     max-width: 100vw;
     overflow-x: hidden;
-    font-family: Arial,  sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 a,
@@ -71,4 +72,28 @@ p {
 ul,
 ol {
     list-style: none;
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --Para: 14px;
+        --Heading1: 26px;
+        --Heading2: 16px;
+    }
+}
+
+@media (max-width: 1000px) {
+    :root {
+        --Para: 12px;
+        --Heading1: 24px;
+        --Heading2: 14px;
+    }
+}
+
+@media (max-width: 750px) {
+    :root {
+        --Para: 11px;
+        --Heading1: 22px;
+        --Heading2: 12px;
+    }
 }

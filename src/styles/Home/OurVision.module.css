@@ -12,8 +12,8 @@
     padding: 4% 3% 12%;
 }
 
-.contentWrap h1{
-    font-size: 36px;
+.contentWrap h1 {
+    font-size: calc(var(--Heading1) + 8px);
     /* font-weight: 600; */
 }
 
@@ -31,11 +31,11 @@
     cursor: pointer;
 }
 
-.readMore p{
+.readMore p {
     text-decoration: underline;
 }
 
-.readMore span{
+.readMore span {
     display: flex;
 }
 
@@ -43,4 +43,21 @@
     width: 50%;
     height: auto;
     object-fit: cover;
+}
+
+@media (max-width: 550px) {
+    .sectionWrap {
+        padding: 0;
+        flex-direction: column;
+    }
+
+    .img {
+        width: 100%;
+    }
+
+    .contentWrap {
+        width: 100%;
+        padding: 4%;
+    }
+    
 }

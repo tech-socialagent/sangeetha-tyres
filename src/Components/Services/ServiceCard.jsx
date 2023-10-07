@@ -10,8 +10,8 @@ const ServiceCard = ({ data }) => {
         <div className={styles.cardWrap}>
             <div className={styles.cards}>
                 {data.card.map((data, id) => (
-                    // <div className={ id === 1 ? styles.secondCard : styles.eachCard}>
-                    <div className={ styles.eachCard}>
+                    <div className={ id === 1 ? styles.secondCard : styles.eachCard}>
+                    {/* <div className={ styles.eachCard}> */}
                         <Image src={data.cardImg} alt='card iamge' width={1000} height={1000} className={styles.cardImage} />
                         <div className={styles.cardContent}>
                             <h3>{data.cardTitle}</h3>
@@ -22,7 +22,7 @@ const ServiceCard = ({ data }) => {
             </div>
             <div className={styles.cardAbout}>
                 <h6>About {data.name}</h6>
-                <h2>We Provide The Best Service for the {data.aboutTitle}</h2>
+                <h2>We Provide The Best Service for the <span>{data.aboutTitle}</span></h2>
                 <p>{data.aboutDesc}</p>
                 <div className={styles.bookAbout}>
                     <Image src={data.bookImg} width={1000} height={1000} className={styles.bookImage} />
