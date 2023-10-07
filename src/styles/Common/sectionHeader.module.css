@@ -16,13 +16,9 @@
     color: var(--Grey);
 }
 
-/* @media (max-width: 750px) {
-    .sectionHeader h2{
-        font-size: 18px;
-    }
+@media (max-width: 750px) {
 
     .sectionHeader p{
-        width: 100%;
-        font-size: 11px;
+        width: 90%;
     }
-} */
+}

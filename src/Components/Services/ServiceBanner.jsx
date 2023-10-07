@@ -8,7 +8,8 @@ const ServiceBanner = () => {
         <Image src='/assests/Services/ServiceBanner.webp' alt='banner' width={1000} height={1000} className={styles.bannerImage}/>
         <div className={styles.bannerContent}>
             <h2>Our Services</h2>
-            <p>Comprehensive Tire Services: From Installation to Maintenance, We've Got Your Wheels Covered. Trust <br /> Our Expertise for Safety, Performance, and a Smooth Ride. Explore Our Tire Solutions Today</p>
+            <p className={styles.forPC}>Comprehensive Tire Services: From Installation to Maintenance, We've Got Your Wheels Covered. Trust <br /> Our Expertise for Safety, Performance, and a Smooth Ride. Explore Our Tire Solutions Today</p>
+            <p className={styles.forMobile}>Comprehensive Tire Services: From Installation to Maintenance, We've Got Your Wheels Covered. Trust Our Expertise for Safety, Performance, and a Smooth Ride. Explore Our Tire Solutions Today</p>
         </div>
     </div>
   )

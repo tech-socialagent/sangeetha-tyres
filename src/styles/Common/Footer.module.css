@@ -78,6 +78,7 @@
 .footerTop{
     display: grid;
     grid-template-columns: 41% auto max-content;
+    gap: 0.7rem;
 }
 
 .menus{
@@ -137,4 +138,14 @@
     cursor: pointer;
 
     padding: 7px;
+}
+
+@media (max-width: 1000px) {
+    .subscribe p{
+        width: 85%;
+    }
+
+    .inputContainer input{
+        width: 65%;
+    }
 }

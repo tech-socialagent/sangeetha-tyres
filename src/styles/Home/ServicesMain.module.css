@@ -1,44 +1,44 @@
-.servicesWrap{
-    padding:3% 3% 6%;
+.servicesWrap {
+    padding: 3% 3% 6%;
 }
 
-.servicesMain{
+.servicesMain {
     display: grid;
     grid-template-columns: 4% 92% 4%;
     margin: 3% 0 5%;
 }
 
-.left{
+.left {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.left span{
+.left span {
     font-size: 40px;
     color: var(--Orange);
     cursor: pointer;
 }
 
-.servicesContainer{
+.servicesContainer {
     width: 100%;
     overflow: scroll !important;
     display: flex;
     gap: 2rem;
 }
 
-.servicesContainer::-webkit-scrollbar{
+.servicesContainer::-webkit-scrollbar {
     display: none;
 }
 
-.eachService{
+.eachService {
     min-width: 310px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.eachImageContainer{
+.eachImageContainer {
     position: relative;
     width: inherit;
     height: 240px;
@@ -46,13 +46,13 @@
     overflow: hidden;
 }
 
-.eachImage{
+.eachImage {
     width: inherit;
     height: inherit;
     object-fit: cover;
 }
 
-.serviceBooking{
+.serviceBooking {
     position: absolute;
     top: 25px;
     right: 10px;
@@ -69,12 +69,12 @@
     cursor: pointer;
 }
 
-.eachService p{
+.eachService p {
     font-size: var(--Para);
     color: var(--Grey);
 }
 
-.eachbottom{
+.eachbottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,39 +84,112 @@
     transition: all 0.1s ease-in-out;
 }
 
-.eachbottom h5{
+.eachbottom h5 {
     text-transform: uppercase;
     font-size: 18px;
     padding: 2px 0px;
     border: none;
 }
 
-.eachbottom:hover{
+.eachbottom:hover {
     color: var(--Orange);
     border-bottom: 1px solid var(--Orange);
     padding: 2px 0px;
 }
 
-.eachbottom span{
+.eachbottom span {
     display: flex;
     font-size: 13px;
 }
 
-.textContainer{
+.textContainer {
     display: flex;
     justify-content: center;
 }
 
-.text{
+.text {
     width: max-content;
-    padding: 28px 90px;
+    padding: 28px 5%;
     background-color: var(--Dark-blue);
     border-radius: 30px;
 }
 
-.text h2{
+.text h2 {
     font-size: 24px;
     font-weight: 600;
     text-transform: capitalize;
     color: #fff;
+}
+
+@media (max-width: 1200px) {
+    .text {
+        padding: 28px 5%;
+    }
+    
+    .text h2 {
+        font-size: 20px;
+    }    
+}
+
+
+@media (max-width: 1000px) {
+    .servicesMain {
+        display: grid;
+        grid-template-columns: 5% 90% 5%;
+    }
+
+    .eachService {
+        min-width: 250px;
+        gap: 1rem;
+    }
+
+    .eachImageContainer {
+        height: 210px;
+    }
+
+    .left span {
+        font-size: 30px;
+    }
+
+    .text {
+        padding: 24px 4%;
+    }
+    
+    .text h2 {
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+    }  
+}
+
+@media (max-width: 750px) {
+    .eachService {
+        min-width: 230px;
+        gap: 0.7rem;
+    }
+
+    .eachImageContainer {
+        height: 190px;
+    }
+
+    .left span {
+        font-size: 25px;
+    }
+}
+
+@media (max-width : 550px) {
+    .servicesMain {
+        display: grid;
+        grid-template-columns: 8% 84% 8%;
+    }
+
+    .eachService {
+        min-width: 78vw;
+        gap: 0.5rem;
+    }
+
+    .eachImageContainer {
+        width: 78vw;
+        height: 190px;
+    }
 }

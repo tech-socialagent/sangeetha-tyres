@@ -21,6 +21,7 @@
     flex-wrap: wrap;
     margin-top: 3%;
     gap: 20px;
+    row-gap: 20px;
 }
 
 .cardWrap{
@@ -43,7 +44,7 @@
 }
 
 .textContainer p{
-    font-size: var(--para);
+    font-size: var(--Para);
     color: var(--Dark-grey);
     font-weight: 500;
 }
@@ -52,4 +53,23 @@
     width: 130px;
     height: 130px;
     object-fit: contain;
+}
+
+@media (max-width: 750px) {
+    .icon{
+        width: 80px;
+        height: 80px;
+    }    
+}
+
+@media (max-width: 550px) {
+    .forPc{
+        display: none;
+    }
+}
+
+@media (min-width: 550px) {
+    .forMobile{
+        display: none;
+    }
 }

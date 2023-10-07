@@ -26,7 +26,12 @@ const HowWeWork = () => {
 
     return (
         <div className={styles.sectionWrap}>
-            <SectionHeader title='How we work?' desc=<>Revving up safety is our priority at Sangeetha Tyre<br />.We provide top-notch tyre solutions and customer service for a secure & satisfying drive</> align='center' />
+            <div className={styles.forPc}>
+                <SectionHeader title='How we work?' desc=<>Revving up safety is our priority at Sangeetha Tyre<br />.We provide top-notch tyre solutions and customer service for a secure & satisfying drive</> align='center' />
+            </div>
+            <div className={styles.forMobile}>
+                <SectionHeader title='How we work?' desc="Revving up safety is our priority at Sangeetha Tyre. We provide top-notch tyre solutions and customer service for a secure & satisfying drive" align='center' />
+            </div>
             <div className={styles.bottom}>
                 {
                     data.map((item, key) => (
@@ -44,4 +49,4 @@ const HowWeWork = () => {
     )
 }
 
-export default HowWeWork
+export default HowWeWork;

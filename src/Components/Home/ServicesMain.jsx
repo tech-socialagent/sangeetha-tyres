@@ -22,7 +22,7 @@ const ServicesMain = () => {
         <div className={styles.servicesWrap}>
             <SectionHeader title='Our Services' desc='' pad='0 2%' />
             <div className={styles.servicesMain}>
-                <div className={styles.left}><span onClick={() => slide(-300)}><IoIosArrowDropleftCircle /></span></div>
+                <div className={styles.left}><span onClick={() => slide(-310)}><IoIosArrowDropleftCircle /></span></div>
                 <div className={styles.servicesContainer} ref={scrl}>
                     {serviceData.map((item) => (
                         <div className={styles.eachService}>
@@ -38,7 +38,7 @@ const ServicesMain = () => {
                         </div>
                     ))}
                 </div>
-                <div className={styles.left}><span onClick={() => slide(+300)}><IoIosArrowDroprightCircle /></span></div>
+                <div className={styles.left}><span onClick={() => slide(+310)}><IoIosArrowDroprightCircle /></span></div>
             </div>
             <div className={styles.textContainer}>
                 <div className={styles.text}>

@@ -11,7 +11,6 @@ export default function Home() {
 
     // Get the current path
     const currentPath = router.asPath
-    console.log("path", currentPath);
     return (
         <>
             <Head>

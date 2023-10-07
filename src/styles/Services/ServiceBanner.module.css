@@ -38,3 +38,24 @@
     color: #D6D6D6;
     text-align: center;
 }
+
+@media (max-width: 750px) {
+    .bannerContent p{
+        font-size: 11.8px;
+    }
+}
+
+@media (max-width: 550px) {
+    .forPC{
+        display: none;
+    }
+    .bannerContent p{
+        width: 90%;
+    }
+}
+
+@media (min-width: 551px) {
+    .forMobile{
+        display: none;
+    }
+}

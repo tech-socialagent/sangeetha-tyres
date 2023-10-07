@@ -76,7 +76,7 @@ const Testimonials = () => {
                                 <p>{item.review}</p>
                                 <div className={styles.line} style={{borderBottom : item.id === slideIndex + 1 ? '1px solid #fff' : '1px solid var(--Dark-grey)'}}>
                                 </div>
-                                <h5>{item.name}</h5>
+                                <h5 id='contactUs'>{item.name}</h5>
                             </div>
                         </div>
                     ))}

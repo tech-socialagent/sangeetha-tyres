@@ -8,6 +8,9 @@ import ServicesMain from '@/Components/Home/ServicesMain'
 import Header from '@/Components/Home/Header'
 import Testimonials from '@/Components/Common/testimonials'
 import Faq from '@/Components/Common/Faq'
+import Rolling from '@/Components/Home/Rolling'
+import Search from '@/Components/Home/Search'
+import Marq from '@/Components/Home/marquee'
 
 export default function Home() {
   return (
@@ -20,10 +23,13 @@ export default function Home() {
       </Head>
       <>
         <Header />
+        <Marq />
+        <Search />
         <ServicesMain />
         <HowWeWork />
         <CarSection />
         <TyreBrands />
+        {/* <Rolling /> */}
         <OurVision />
         <Testimonials />
         <Contact />

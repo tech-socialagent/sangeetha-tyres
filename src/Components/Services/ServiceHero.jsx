@@ -10,6 +10,7 @@ const ServiceHero = ({ data }) => {
     return (
         <div className={styles.sectionWrap}>
             <Image src={data.heroImage} alt='image' className={styles.img} width={1000} height={1000}/>
+            <Image src='/assests/Services/background.png' width={1000} height={1000} className={styles.backgroundPic} /> 
             <div className={styles.infoCard}>
                 <div className={styles.title}>
                     {/* Precision Balanced: Your <span className={styles.highlight} >Drive Perfected</span> */}
