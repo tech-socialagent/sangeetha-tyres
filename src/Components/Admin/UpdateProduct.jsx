@@ -168,7 +168,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
 
 
         // Create the product data with image URLs
-        let currentDateTime = new Date();
+        let currentDateTime = new Date(); 
         const productData = {
             title: product.title,
             description: product.description,
