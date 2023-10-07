@@ -10,7 +10,7 @@ import Testimonials from '@/Components/Common/testimonials'
 import Faq from '@/Components/Common/Faq'
 import Rolling from '@/Components/Home/Rolling'
 import Search from '@/Components/Home/Search'
-import Marq from '@/Components/Home/marquee'
+import Marq from '@/Components/Home/Marquee'
 
 export default function Home() {
   return (
