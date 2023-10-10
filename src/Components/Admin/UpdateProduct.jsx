@@ -8,12 +8,14 @@ import { IoMdAddCircleOutline } from 'react-icons/io'
 import { PopupContext } from '@/Context';
 import AddItemPopup from './AddItemPopup';
 import { GrCloudUpload } from 'react-icons/gr'
+import { BiArrowBack } from 'react-icons/bi'
 
 const UpdateProduct = ({ productData, setEditProduct }) => {
     // State for file previews
     const [filePreviews, setFilePreviews] = useState([]);
     const [notSaved, setNotSaved] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [notsavedPopup, setNotsavedPopup] = useState(false)
 
     // State for product data
     const [product, setProduct] = useState(productData);
@@ -162,13 +164,13 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                 imageUrls.push(downloadURL);
             }
         }
-        else{
-            imageUrls= product.images
+        else {
+            imageUrls = product.images
         }
 
 
         // Create the product data with image URLs
-        let currentDateTime = new Date(); 
+        let currentDateTime = new Date();
         const productData = {
             title: product.title,
             description: product.description,
@@ -204,13 +206,20 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
         setLoading(false)
         setNotSaved(false)
         setEditProduct(false)
-
+        setNotSaved(false)
     };
 
+    const handleBackBtn = () => {
+        if (notSaved === true) {
+            setNotsavedPopup(true)
+        }
+        else {
+            setEditProduct(false)
+        }
+    }
 
     return (
         <form className={styles.addProduct} onSubmit={handleSubmit} >
-
             {/* Loading  */}
             {loading && (
                 <div className={styles.loadingWrap}>
@@ -220,7 +229,18 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
 
             <div className={styles.titleBackWrap}>
                 <div className={styles.title}>
-                    Update : {product.title}
+                    <BiArrowBack onClick={handleBackBtn} className={styles.backIcon} /> {productData.title}
+                </div>
+
+                {/*Not saved Pop-up */}
+                <div className={notsavedPopup ? styles.notSavedPopup : styles.hide}>
+                    <div className={styles.notSavedDialog}>
+                        <h3>Changes are Not Saved</h3>
+                        <div className={styles.btnWrap}>
+                            <input className={styles.notSavedBtn} type="submit" value="Save Changes" />
+                            <button className={styles.notSavedBtn} onClick={() => setEditProduct(false)} >Exit</button>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -557,9 +577,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                         disabled
                     />
                 </div>
-                <div className={styles.saveCloseBtn}>
-                    <input type="submit" value='Save' className={notSaved ? styles.notSaved : styles.saveBtn} />
-                </div>
+
             </div>
 
 
@@ -576,6 +594,9 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             }
 
             <div className={styles.rightWrap}>
+                <div className={styles.saveCloseBtn}>
+                    <input type="submit" value='Save' className={notSaved ? styles.notSaved : styles.saveBtn} />
+                </div>
             </div>
         </form >
     );
