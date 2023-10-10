@@ -38,6 +38,13 @@
     font-weight: 600;
     padding: 13px 0;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.activeBtn{
+    background-color: #000 !important;
+    color: #fff;
 }
 
 .options {
@@ -53,7 +60,6 @@
 }
 
 .option input[type='checkbox'] {
-    width: 20px;
     cursor: pointer;
 }
 
@@ -80,13 +86,12 @@
 }
 
 .sections select {
+    outline: none;
     padding: 13px 15px;
     border-radius: 2px;
     font-size: 14px;
+    cursor: pointer;
 }
-
-
-.sections select option {}
 
 .searchBtn {
     border: none;
@@ -111,7 +116,9 @@
     cursor: pointer;
 }
 
-.searchRight {}
+.searchRight {
+    background-color: #d8e8f5;
+}
 
 .rightImage {
     width: 100%;

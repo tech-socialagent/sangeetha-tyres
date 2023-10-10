@@ -94,10 +94,20 @@
 }
 
 @media (max-width: 550px) {
+    .sectionWrap{
+        position: relative;
+        height: 85vh;
+    }
+
     .infoCard {
         left: 5%;
 
         width: 90%;
         gap: 0.7rem;
     }
+    
+    .backgroundPic{
+        width: 45%;
+    }
+
 }
