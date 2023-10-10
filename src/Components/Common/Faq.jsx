@@ -5,7 +5,7 @@ import { AiFillCloseCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
 const Faq = () => {
 
-    const [ active, setActive ] = useState('01');
+    const [active, setActive] = useState('01');
 
     const faqData = [
         {
@@ -35,19 +35,20 @@ const Faq = () => {
             <SectionHeader title="FAQ's" desc="Tyre Talk! The secrets for a Gripping and Safe Ride." />
             <div className={styles.faqMain}>
                 {faqData.map((item, id) => (
-                    <div className={styles.eachFaq} key={id} style={{backgroundColor: item.num === active ? '#d8e8f5' : '#ecf2f6'}} onClick={() => setActive(item.num)}>
+                    <div className={styles.eachFaq} key={id} style={{ backgroundColor: item.num === active ? '#d8e8f5' : '#ecf2f6' }} onClick={() => setActive(item.num)}>
                         <div className={styles.eachLeft}>
                             <span>{item.num}</span>
                         </div>
                         <div className={styles.eachRight}>
                             <h3>{item.ques}</h3>
                             <p
-                                style={{opacity: item.num === active ? '1' : '0', lineHeight: item.num === active ? '16px' : '0px'}}
+                                style={{ opacity: item.num === active ? '1' : '0', lineHeight: item.num === active ? '16px' : '0px' }}
                             >{item.ans}</p>
                         </div>
                         <div className={styles.close}>
                             { item.num !== active && <span onClick={() => setActive(item.num)}><AiOutlinePlusCircle /></span>}
-                            { item.num === active && <span onClick={() => setActive('00')}><AiFillCloseCircle /></span>}
+                            {/* { item.num !== active && <span onClick={() => setActive(item.num)}><AiOutlinePlusCircle /></span>} */}
+                            {/* { item.num === active && <span onClick={() => setActive('00')}><AiFillCloseCircle /></span>} */}
                         </div>
                     </div>
                 ))}

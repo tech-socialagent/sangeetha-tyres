@@ -1,4 +1,76 @@
-.marqueeContainer{
+.marqueeWrap {
+    margin-top: 20px;
+    position: relative;
+    display: block;
+    width: 100vw;
+    height: 35px;
+    top: 0%;
+    left: 0%;
+    overflow: hidden;
+
     border-bottom: 1px solid #000;
-    padding-top: 2%;
+}
+
+.marquee {
+    position: absolute;
+    display: block;
+    margin: auto auto;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 100%;
+    height: 100%;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 100%;
+    height: 100%;
+    font-size: 18px;
+    animation: marquee 15s linear infinite;
+}
+
+.marquee2 span {
+    animation-delay: 7.5s;
+}
+
+.imageText {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gifContainer {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+@media (max-width: 750px) {
+    .marqueeWrap {
+        height: 25px;
+    }
+
+    .marquee span {
+        font-size: 14px;
+    }
+
+    .gifContainer {
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+    }
+
 }

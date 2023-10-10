@@ -37,12 +37,12 @@
 
 .rightContainer h6{
     color: var(--Orange);
-    font-size: 14px;
+    font-size: calc(var(--Para) - 2px);
     font-weight: 600;
 }
 
 .rightContainer h1{
-    font-size: 34px;
+    font-size: calc(var(--Heading1) + 6px);
     line-height: 40px;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .rightContainer p{
-    font-size: 20px;
+    font-size: calc(var(--Heading2) + 2px);
     width: 90%;
     text-align: justify;
     margin-top: 1%;
@@ -62,8 +62,88 @@
     border: none;
     background-color: var(--Orange);
     color: #fff;
-    font-size: 18px;
+    font-size: var(--Heading2);
     font-weight: 600;
     padding: 25px 35px;
     border-radius: 8px;
+}
+
+@media (max-width: 1200px) {
+    .sectionRight{
+        left: 40%;
+        top: 60px;
+    
+        width: 60%;
+        padding: 20px;
+    }
+
+    .rightContainer{
+        padding: 25px;
+        gap: 0.7rem;    
+    }
+
+    
+}
+
+@media (max-width: 1000px) {
+    .sectionRight{
+        left: 40%;
+        top: 55px;
+    
+        width: 65%;
+        padding: 15px;
+    }
+
+    .rightContainer{
+        padding: 15px;
+        gap: 0.5rem;    
+    }.rightContainer button{
+        font-size: 14px;
+        padding: 20px 30px;
+    }
+}
+
+@media (max-width: 850px) {
+    .sectionWrap{
+        grid-template-columns: auto;
+    }
+
+    .sectionRight{
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .rightContainer{
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .sectionRight{
+        padding: 5px;
+    }
+
+    .rightContainer{
+        padding: 10px;
+    }
+
+    .rightContainer h1{
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .rightContainer button{
+        width: 98%;
+        font-size: 12px;
+        padding: 13px 0px;
+    }
+
+    .rightContainer p{
+        font-size: calc(var(--Heading2) + 2px);
+        width: 98%;
+        text-align: justify;
+        margin-top: 1%;
+    }
 }

@@ -10,7 +10,7 @@ import Testimonials from '@/Components/Common/testimonials'
 import Faq from '@/Components/Common/Faq'
 import Rolling from '@/Components/Home/Rolling'
 import Search from '@/Components/Home/Search'
-import Marq from '@/Components/Home/marquee'
+import HeaderMarquee from '@/Components/Home/MarqueeSection'
 
 export default function Home() {
   return (
@@ -23,13 +23,13 @@ export default function Home() {
       </Head>
       <>
         <Header />
-        <Marq />
+        <HeaderMarquee />
         <Search />
         <ServicesMain />
         <HowWeWork />
         <CarSection />
         <TyreBrands />
-        {/* <Rolling /> */}
+        <Rolling />
         <OurVision />
         <Testimonials />
         <Contact />

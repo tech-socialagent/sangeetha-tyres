@@ -149,3 +149,47 @@
         width: 65%;
     }
 }
+
+@media (max-width: 750px) {
+    .footerWrap{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footerLeft{
+        gap: 1.5rem;
+    }
+
+    .subscribe h5{
+        font-size: 14px;
+    }
+
+    .subscribe p{
+        width: 95%;
+    }
+
+    .footerTop{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footerBottom{
+        align-items: center;
+    }
+
+    .terms ul{
+        gap: 01rem;
+    }
+    
+    .terms ul li{
+        font-size: 12px;
+    }
+    
+    .icons{
+        gap: 0.5rem;
+    }
+
+    .eachIcon{
+        padding: 5px;
+    }
+}

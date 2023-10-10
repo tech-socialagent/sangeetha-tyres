@@ -70,8 +70,13 @@ p {
 }
 
 ul,
-ol {
+ol,
+li {
     list-style: none;
+}
+
+button{
+    cursor: pointer;
 }
 
 @media (max-width: 1200px) {
@@ -94,6 +99,6 @@ ol {
     :root {
         --Para: 11px;
         --Heading1: 22px;
-        --Heading2: 12px;
+        --Heading2: 13px;
     }
 }
