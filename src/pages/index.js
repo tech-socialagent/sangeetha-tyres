@@ -12,6 +12,7 @@ import Rolling from '@/Components/Home/Rolling'
 import Search from '@/Components/Home/Search'
 import HeaderMarquee from '@/Components/Home/MarqueeSection'
 
+
 export default function Home() {
   return (
     <>
