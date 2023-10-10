@@ -65,7 +65,7 @@ const ProductList = ({ setProductData, setEditProduct }) => {
                                 <Image width={100} height={80} src={item.images[0]} alt="product" />
                             </td>
                             <td>{item.title}</td>
-                            <td>Active</td>
+                            <td>{item.status}</td>
                             <td>{item.skuCode}</td>
                             <td className={styles.price}>{formatPrice(item.price)}</td>
                             <td onClick={() => handleEdit(item)} ><BiSolidEdit className={styles.editIcon} /> </td>

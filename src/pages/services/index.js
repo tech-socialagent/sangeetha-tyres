@@ -1,5 +1,7 @@
 import Contact from '@/Components/Common/Contact'
 import Faq from '@/Components/Common/Faq'
+import Footer from '@/Components/Common/Footer'
+import Navbar from '@/Components/Common/Navbar'
 import ServiceBanner from '@/Components/Services/ServiceBanner'
 import ServiceHero from '@/Components/Services/ServiceHero'
 import AllServices from '@/Components/Services/allServices'
@@ -20,10 +22,12 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <>
+                <Navbar />
                 <ServiceBanner />
                 <AllServices />
                 <Contact />
                 <Faq />
+                <Footer />
             </>
         </>
     )

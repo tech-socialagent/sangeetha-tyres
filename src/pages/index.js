@@ -11,6 +11,8 @@ import Faq from '@/Components/Common/Faq'
 import Rolling from '@/Components/Home/Rolling'
 import Search from '@/Components/Home/Search'
 import HeaderMarquee from '@/Components/Home/MarqueeSection'
+import Navbar from '@/Components/Common/Navbar'
+import Footer from '@/Components/Common/Footer'
 
 
 export default function Home() {
@@ -23,6 +25,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
+        <Navbar />
         <Header />
         <HeaderMarquee />
         <Search />
@@ -35,6 +38,7 @@ export default function Home() {
         <Testimonials />
         <Contact />
         <Faq />
+        <Footer />
       </>
     </>
   )

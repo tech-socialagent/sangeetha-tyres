@@ -27,6 +27,7 @@ const AddNewProduct = ({ title, productData }) => {
     tyreAspect: '',
     price: '',
     skuCode: '',
+    status: ''
   });
 
   // State for various dropdown options
@@ -203,7 +204,7 @@ const AddNewProduct = ({ title, productData }) => {
       };
 
       // Add product data to Firestore
-      await setDoc(doc(db, "products",  product.skuCode), productData);
+      await setDoc(doc(db, "products", product.skuCode), productData);
       // await addDoc(collection(db, 'products', product.skuCode), productData);
 
       // Clear the form fields and file previews after successful submission
@@ -243,336 +244,359 @@ const AddNewProduct = ({ title, productData }) => {
 
       </div>
 
-      <div className={styles.inputForm}>
-        <div className={styles.large}>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            placeholder='Enter the title'
-            value={product.title}
-            onChange={(e) => {
-              setProduct(prevProductData => ({
-                ...prevProductData,
-                title: e.target.value,
-              })), setNotSaved(true)
-            }
-            }
-            required
-          />
-        </div>
-        <div className={styles.large}>
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            placeholder='Enter the description'
-            value={product.description}
-            onChange={(e) => {
-              setProduct(prevProductData => ({
-                ...prevProductData,
-                description: e.target.value,
-              })), setNotSaved(true)
-            }
-            }
-            required
-          />
-        </div>
-        <div className={styles.large}>
-          <label htmlFor="uploadImages">Upload Images</label>
-          {filePreviews.length > 0 && (
-            <div className={styles.filePreviews}>
-              {filePreviews.length > 0 && (
-                <div className={styles.filePreviews}>
-                  {filePreviews.map((preview, index) => (
-                    <Image
-                      className={styles.previewImg}
-                      key={index}
-                      src={preview}
-                      alt={`Preview ${index}`}
-                      width={200} // Set the width and height as per your requirements
-                      height={200}
-                    />
-                  ))}
-                </div>
-              )}
+      <div style={{ display: 'flex' }}>
+
+
+
+        <div className={styles.inputForm}>
+          <div className={styles.large}>
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder='Enter the title'
+              value={product.title}
+              onChange={(e) => {
+                setProduct(prevProductData => ({
+                  ...prevProductData,
+                  title: e.target.value,
+                })), setNotSaved(true)
+              }
+              }
+              required
+            />
+          </div>
+          <div className={styles.large}>
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder='Enter the description'
+              value={product.description}
+              onChange={(e) => {
+                setProduct(prevProductData => ({
+                  ...prevProductData,
+                  description: e.target.value,
+                })), setNotSaved(true)
+              }
+              }
+              required
+            />
+          </div>
+          <div className={styles.large}>
+            <label htmlFor="uploadImages">Upload Images</label>
+            {filePreviews.length > 0 && (
+              <div className={styles.filePreviews}>
+                {filePreviews.length > 0 && (
+                  <div className={styles.filePreviews}>
+                    {filePreviews.map((preview, index) => (
+                      <Image
+                        className={styles.previewImg}
+                        key={index}
+                        src={preview}
+                        alt={`Preview ${index}`}
+                        width={200} // Set the width and height as per your requirements
+                        height={200}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            <input
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              id="uploadImages"
+              name="uploadImages"
+              placeholder="Select image files"
+              multiple
+              required
+              onChange={handleFileChange}
+            />
+          </div>
+
+          <div className={styles.medium}>
+            <label htmlFor="tyreBrand">Tyre Brand</label>
+            <div className={styles.select}>
+              <select
+                id="tyrebrand"
+                name="tyrebrand"
+                value={product.tyreBrand}
+                onChange={(e) =>
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    tyreBrand: e.target.value,
+                  }))
+                }
+                required
+              >
+                {tyreBrand.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyreBrand.length,
+                    popupTitle: "Tyre Brand",
+                    docName: "TyreBrands",
+                  }));
+                }}
+              />
             </div>
-          )}
-          <input
-            type="file"
-            accept=".jpg, .jpeg, .png"
-            id="uploadImages"
-            name="uploadImages"
-            placeholder="Select image files"
-            multiple
-            required
-            onChange={handleFileChange}
-          />
-        </div>
-
-        <div className={styles.medium}>
-          <label htmlFor="tyreBrand">Tyre Brand</label>
-          <div className={styles.select}>
-            <select
-              id="tyrebrand"
-              name="tyrebrand"
-              value={product.tyreBrand}
-              onChange={(e) =>
-                setProduct((prevProductData) => ({
-                  ...prevProductData,
-                  tyreBrand: e.target.value,
-                }))
-              }
-              required
-            >
-              {tyreBrand.map((item, key) => (
-                <option key={key}>{item.value}</option>
-              ))}
-            </select>
-            <IoMdAddCircleOutline
-              className={styles.addIcon}
-              onClick={() => {
-                setPopupActive(true);
-                setPopupData((prevPopupData) => ({
-                  ...prevPopupData,
-                  id: tyreBrand.length,
-                  popupTitle: "Tyre Brand",
-                  docName: "TyreBrands",
-                }));
-              }}
-            />
           </div>
-        </div>
 
-        <div className={styles.medium}>
-          <label htmlFor="vehicleBrand">Vehicle Brand</label>
-          <div className={styles.select}>
-            <select
-              id="vehicleBrand"
-              name="vehicleBrand"
-              value={product.vehicleBrand}
-              onChange={(e) =>
-                setProduct((prevProductData) => ({
-                  ...prevProductData,
-                  vehicleBrand: e.target.value,
-                }))
-              }
-              required
-            >
-              {vehicleBrand.map((item, key) => (
-                <option key={key}>{item.value}</option>
-              ))}
-            </select>
-            <IoMdAddCircleOutline
-              className={styles.addIcon}
-              onClick={() => {
-                setPopupActive(true);
-                setPopupData((prevPopupData) => ({
-                  ...prevPopupData,
-                  id: vehicleBrand.length,
-                  popupTitle: "Vehicle Brand",
-                  docName: "VehicleBrand",
-                }));
-              }}
-            />
+          <div className={styles.medium}>
+            <label htmlFor="vehicleBrand">Vehicle Brand</label>
+            <div className={styles.select}>
+              <select
+                id="vehicleBrand"
+                name="vehicleBrand"
+                value={product.vehicleBrand}
+                onChange={(e) =>
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    vehicleBrand: e.target.value,
+                  }))
+                }
+                required
+              >
+                {vehicleBrand.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: vehicleBrand.length,
+                    popupTitle: "Vehicle Brand",
+                    docName: "VehicleBrand",
+                  }));
+                }}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className={styles.medium}>
-          <label htmlFor="tyreSize">Tyre Size</label>
-          <div className={styles.select}>
-            <select
-              id="tyreSize"
-              name="tyreSize"
-              value={product.tyreSize}
-              onChange={(e) =>
-                setProduct((prevProductData) => ({
-                  ...prevProductData,
-                  tyreSize: e.target.value,
-                }))
-              }
-              required
-            >
-              {tyreSize.map((item, key) => (
-                <option key={key}>{item.value}</option>
-              ))}
-            </select>
-            <IoMdAddCircleOutline
-              className={styles.addIcon}
-              onClick={() => {
-                setPopupActive(true);
-                setPopupData((prevPopupData) => ({
-                  ...prevPopupData,
-                  id: tyreSize.length,
-                  popupTitle: "Tyre Size",
-                  docName: "TyreSize",
-                }));
-              }}
-            />
+          <div className={styles.medium}>
+            <label htmlFor="tyreSize">Tyre Size</label>
+            <div className={styles.select}>
+              <select
+                id="tyreSize"
+                name="tyreSize"
+                value={product.tyreSize}
+                onChange={(e) =>
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    tyreSize: e.target.value,
+                  }))
+                }
+                required
+              >
+                {tyreSize.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyreSize.length,
+                    popupTitle: "Tyre Size",
+                    docName: "TyreSize",
+                  }));
+                }}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className={styles.medium}>
-          <label htmlFor="price">Price</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            placeholder="Enter the Price"
-            onChange={(e) => {
-              setProduct((prevProductData) => ({
-                ...prevProductData,
-                price: e.target.value,
-              })), setNotSaved(true)
-            }
-            }
-            required
-          />
-        </div>
-
-        <div className={styles.medium}>
-          <label htmlFor="tyreType">Tyre Type</label>
-          <div className={styles.select}>
-            <select
-              id="tyreType"
-              name="tyreType"
-              value={product.TyreType}
+          <div className={styles.medium}>
+            <label htmlFor="price">Price</label>
+            <input
+              type="text"
+              id="price"
+              name="price"
+              placeholder="Enter the Price"
               onChange={(e) => {
                 setProduct((prevProductData) => ({
                   ...prevProductData,
-                  TyreType: e.target.value,
+                  price: e.target.value,
                 })), setNotSaved(true)
               }
               }
               required
-            >
-              {tyreType.map((item, key) => (
-                <option key={key}>{item.value}</option>
-              ))}
-            </select>
-            <IoMdAddCircleOutline
-              className={styles.addIcon}
-              onClick={() => {
-                setPopupActive(true);
-                setPopupData((prevPopupData) => ({
-                  ...prevPopupData,
-                  id: tyreType.length,
-                  popupTitle: "Tyre Type",
-                  docName: "TyreType",
-                }))
-              }}
             />
           </div>
-        </div>
 
-        <div className={styles.medium}>
-          <label htmlFor="tyreWidth">Tyre Width</label>
-          <div className={styles.select}>
-            <select
-              id="tyreWidth"
-              name="tyreWidth"
-              value={product.tyreWidth}
+          <div className={styles.medium}>
+            <label htmlFor="tyreType">Tyre Type</label>
+            <div className={styles.select}>
+              <select
+                id="tyreType"
+                name="tyreType"
+                value={product.TyreType}
+                onChange={(e) => {
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    TyreType: e.target.value,
+                  })), setNotSaved(true)
+                }
+                }
+                required
+              >
+                {tyreType.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyreType.length,
+                    popupTitle: "Tyre Type",
+                    docName: "TyreType",
+                  }))
+                }}
+              />
+            </div>
+          </div>
+
+          <div className={styles.medium}>
+            <label htmlFor="tyreWidth">Tyre Width</label>
+            <div className={styles.select}>
+              <select
+                id="tyreWidth"
+                name="tyreWidth"
+                value={product.tyreWidth}
+                onChange={(e) => {
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    tyreWidth: e.target.value,
+                  })), setNotSaved(true)
+                }
+                }
+                required
+              >
+                {tyreWidth.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyreWidth.length,
+                    popupTitle: "Tyre Width",
+                    docName: "TyreWidth",
+                  }));
+                }}
+              />
+            </div>
+          </div>
+
+          <div className={styles.medium}>
+            <label htmlFor="tyreAspect">Tyre Aspect</label>
+            <div className={styles.select}>
+              <select
+                id="tyreAspect"
+                name="tyreAspect"
+                value={product.tyreAspect}
+                onChange={(e) => {
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    tyreAspect: e.target.value,
+                  })), setNotSaved(true)
+                }
+                }
+                required
+              >
+                {tyreAspect.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyreAspect.length,
+                    popupTitle: "Tyre Aspect",
+                    docName: "TyreAspect",
+                  }));
+                  setPopupActive(true);
+                }}
+              />
+            </div>
+          </div>
+
+          <div className={styles.medium}>
+            <label htmlFor="skuCode">SKU Code</label>
+            <input
+              type="text"
+              id="skuCode"
+              name="skuCode"
+              placeholder="Enter the SKU Code"
+              value={product.skuCode}
               onChange={(e) => {
                 setProduct((prevProductData) => ({
                   ...prevProductData,
-                  tyreWidth: e.target.value,
+                  skuCode: e.target.value,
                 })), setNotSaved(true)
               }
               }
               required
-            >
-              {tyreWidth.map((item, key) => (
-                <option key={key}>{item.value}</option>
-              ))}
-            </select>
-            <IoMdAddCircleOutline
-              className={styles.addIcon}
-              onClick={() => {
-                setPopupActive(true);
-                setPopupData((prevPopupData) => ({
-                  ...prevPopupData,
-                  id: tyreWidth.length,
-                  popupTitle: "Tyre Width",
-                  docName: "TyreWidth",
-                }));
-              }}
             />
           </div>
         </div>
 
-        <div className={styles.medium}>
-          <label htmlFor="tyreAspect">Tyre Aspect</label>
-          <div className={styles.select}>
-            <select
-              id="tyreAspect"
-              name="tyreAspect"
-              value={product.tyreAspect}
-              onChange={(e) => {
-                setProduct((prevProductData) => ({
-                  ...prevProductData,
-                  tyreAspect: e.target.value,
-                })), setNotSaved(true)
-              }
-              }
-              required
-            >
-              {tyreAspect.map((item, key) => (
-                <option key={key}>{item.value}</option>
-              ))}
-            </select>
-            <IoMdAddCircleOutline
-              className={styles.addIcon}
-              onClick={() => {
-                setPopupData((prevPopupData) => ({
-                  ...prevPopupData,
-                  id: tyreAspect.length,
-                  popupTitle: "Tyre Aspect",
-                  docName: "TyreAspect",
-                }));
-                setPopupActive(true);
-              }}
-            />
-          </div>
-        </div>
 
-        <div className={styles.medium}>
-          <label htmlFor="skuCode">SKU Code</label>
-          <input
-            type="text"
-            id="skuCode"
-            name="skuCode"
-            placeholder="Enter the SKU Code"
-            value={product.skuCode}
-            onChange={(e) => {
-              setProduct((prevProductData) => ({
-                ...prevProductData,
-                skuCode: e.target.value,
-              })), setNotSaved(true)
-            }
-            }
-            required
-          />
-        </div>
-        <div className={styles.saveCloseBtn}>
+
+
+        {
+          popupActive ? (
+            <AddItemPopup
+              id={popupData.id + 1}
+              popupTitle={popupData.popupTitle}
+              docName={popupData.docName}
+            />
+          ) : (
+            ''
+          )
+        }
+
+        <div className={styles.rightWrap}>
           <input type="submit" value='Save' className={notSaved ? styles.notSaved : styles.saveBtn} />
+          <div className={styles.select}>
+            <select
+              id="status"
+              name="status"
+              value={product.status}
+              onChange={(e) =>
+                setProduct((prevProductData) => ({
+                  ...prevProductData,
+                  status: e.target.value,
+                }))
+              }
+              required
+            >
+                <option>Active</option>
+                <option>Draft</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-
-      {
-        popupActive ? (
-          <AddItemPopup
-            id={popupData.id + 1}
-            popupTitle={popupData.popupTitle}
-            docName={popupData.docName}
-          />
-        ) : (
-          ''
-        )
-      }
-
-      <div className={styles.rightWrap}>
       </div>
     </form >
   );

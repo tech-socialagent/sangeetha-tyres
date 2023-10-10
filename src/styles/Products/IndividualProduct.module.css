@@ -1,0 +1,10 @@
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+    background-image: url('../../../public/assests/Products/banner.png');
+    background-size: cover;
+    color: #fff;
+    font-style: italic;
+}
