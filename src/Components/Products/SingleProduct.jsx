@@ -13,8 +13,8 @@ const SingleProduct = ({ data }) => {
                 <div className={styles.images}>
                     <div className={styles.scrollingImages}>
                         {data.images.map((item, id) => (
-                            <div 
-                                className={styles.scrollingImageContainer} 
+                            <div
+                                className={styles.scrollingImageContainer}
                                 key={id}
                                 onClick={() => setCenter(item)}
                             >
@@ -28,40 +28,59 @@ const SingleProduct = ({ data }) => {
                     <Image src={data.brandImage} alt='brand' width={1000} height={1000} className={styles.brandImage} />
                     <h6>{data.name}</h6>
                     <h1>{data.id}</h1>
-                    <h2>{data.mrp}</h2>
+                    <h2>M.R.P : &nbsp;&nbsp; ₹{data.mrp}</h2>
                     <h5>Inclusive of all taxes</h5>
                     <button className={styles.detailsBtn}>SEND ENQUIRY</button>
                 </div>
             </div>
-            <SectionHeader title='QUICK OVERVIEW' desc={data.title} />
-            <div className={styles.overview}>
-                <div className={styles.overviewContainer}>
-                    <div className={styles.eachOverview}>
-                        <h5>Width</h5>
-                        <p>{data.width}</p>
+
+            {/* Product Overview */}
+
+            <div className={styles.overviewWrap}>
+                <SectionHeader title='QUICK OVERVIEW' desc={data.title} align='center' />
+                <div className={styles.overview}>
+                    <div className={styles.overviewContainer}>
+                        <div className={styles.eachOverview}>
+                            <h5>Width</h5>
+                            <p>{data.width}</p>
+                        </div>
+                        <div className={styles.eachOverview}>
+                            <h5>Rim Diameter in Inches</h5>
+                            <p>{data.rim}</p>
+                        </div>
+                        <div className={styles.eachOverview}>
+                            <h5>Speed Rating</h5>
+                            <p>{data.speed}</p>
+                        </div>
                     </div>
-                    <div className={styles.eachOverview}>
-                        <h5>Rim Diameter in Inches</h5>
-                        <p>{data.rim}</p>
-                    </div>
-                    <div className={styles.eachOverview}>
-                        <h5>Speed Rating</h5>
-                        <p>{data.speed}</p>
+                    <div className={styles.overviewContainer}>
+                        <div className={styles.eachOverview}>
+                            <h5>Aspect Ratio</h5>
+                            <p>{data.ratio}</p>
+                        </div>
+                        <div className={styles.eachOverview}>
+                            <h5>Load Index</h5>
+                            <p>{data.loadIndex}</p>
+                        </div>
+                        <div className={styles.eachOverview}>
+                            <h5>Tubeless</h5>
+                            <p>{data.tubeless ? 'Yes' : 'No'}</p>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.overviewContainer}>
-                    <div className={styles.eachOverview}>
-                        <h5>Aspect Ratio</h5>
-                        <p>{data.ratio}</p>
-                    </div>
-                    <div className={styles.eachOverview}>
-                        <h5>Load Index</h5>
-                        <p>{data.loadIndex}</p>
-                    </div>
-                    <div className={styles.eachOverview}>
-                        <h5>Tubeless</h5>
-                        <p>{data.tubeless ? 'Yes' : 'No'}</p>
-                    </div>
+            </div>
+
+            {/* Product Description */}
+
+            <div className={styles.desc}>
+                <div className={styles.title}>
+                    <Image src={data.brandImage} alt='brand' width={1000} height={1000} className={styles.brandImage1} />
+                    <h1>{data.id}</h1>
+                    <h5>{data.name}</h5>
+                </div>
+                <div className={styles.content}>
+                    <h2>Description</h2>
+                    <p>{data.desc}</p>
                 </div>
             </div>
         </div>

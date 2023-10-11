@@ -25,7 +25,10 @@ const IndividualProduct = () => {
         tubeless: true,
 
         //Section Header
-        title:'BRIDGESTONE - STRUDO PASSENGER'
+        title:'BRIDGESTONE - STRUDO PASSENGER',
+
+        //Description
+        desc:"The Bridgestone Sturdo passenger is made for performance. It performs well in wet and dry conditions and the tread pattern allows one to brake even in wet conditions. To reduce the noise created while driving, Bridgestone has carved five different tread blocks on the tyre. This tyre involves a varied 5 pitch design to prevent the road noise from filtering in to the vehicle cabin. Large centre blocks come equipped with 3D grooves in order to maximize wet and dry traction.",
     };
 
     return (
