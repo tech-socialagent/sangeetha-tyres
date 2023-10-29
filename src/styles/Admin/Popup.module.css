@@ -17,7 +17,7 @@
 
 .popupWrap {
     /* width: 0%; */
-    height: 60%;
+    min-height: 60%;
     background: #fff;
     position: relative;
     display: flex;

@@ -14,20 +14,11 @@
     display: flex;
     gap: 20px;
     padding: 2% 4%;
-    position: relative;
+    /* position: relative;
+    min-height: 200px;
+    overflow-y: scroll; */
 }
 
-.leftFilter {
-    width: 25%;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 100px;
-    left: 0;
-    background-color: yellow;
-    padding: 50px;
-    font-size: 20px;
-    height: 100px;
-}
 
 .rightProductList {
     width: 75%;
@@ -87,22 +78,20 @@
 
 /* Product Page Styles */
 
-.pageWrap{
-    margin: 2%;
-    position: relative;
-}
 
-.filterWrap{
+
+.filterWrap {
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     padding: 2%;
+    width: 25%;
+   
 }
 
 
 
-.productList{
-    padding-left: 25%;
-
+.productList {
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -113,40 +102,41 @@
 
 /* Filter Styles */
 
-.filterContainer{
+.filterContainer {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.filterTitle{
+
+.filterTitle {
     display: flex;
     justify-content: space-between;
 }
 
-.filterTitle h3{
+.filterTitle h3 {
     font-size: calc(var(--Heading2) + 2px);
     font-weight: 600;
 }
 
-.filterTitle span{
+.filterTitle span {
     font-size: 24px;
 }
 
-.menuContainer{
+.menuContainer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.eachMenu{
+.eachMenu {
     display: flex;
     align-items: center;
     gap: 0.7rem;
     cursor: pointer;
 }
 
-.square{
+.square {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,12 +145,12 @@
     border: 1px solid #000;
 }
 
-.square span{
+.square span {
     display: flex;
     transform: rotate(10deg);
     color: var(--Orange);
 }
 
-.eachMenu span{
+.eachMenu span {
     font-size: 14px;
 }

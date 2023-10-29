@@ -591,8 +591,8 @@ const AddNewProduct = ({ title, productData }) => {
               }
               required
             >
-                <option>Active</option>
-                <option>Draft</option>
+              <option>Active</option>
+              <option>Draft</option>
             </select>
           </div>
         </div>
