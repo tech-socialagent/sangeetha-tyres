@@ -11,6 +11,7 @@ const SingleProduct = ({ data }) => {
 
     useEffect(() => {
         setCenter(data.images ? data.images[0] : null)
+        console.log("data", data);
     }, [data])
 
     const readData = async () => {
@@ -20,6 +21,7 @@ const SingleProduct = ({ data }) => {
             querySnapshot.forEach((doc) => {
                 // array.push()
                 setTyreBrand(doc.data());
+                console.log("tyreBrand", tyreBrand);
             });
         }
     }

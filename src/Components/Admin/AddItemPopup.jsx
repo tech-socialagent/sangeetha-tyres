@@ -33,7 +33,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
             return; // Do not proceed further
         } else {
 
-            if (docName === "Tyre Brand") {
+            if (docName === "TyreBrands") {
                 const storageRef = ref(storage, `TyreBrand/${image.name}`);
                 await uploadBytes(storageRef, image, metadata);
 
@@ -56,6 +56,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
 
         }
     };
+
 
     return (
         <div className={popupActive ? styles.popupActive : styles.popupDisabled}>

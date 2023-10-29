@@ -20,7 +20,9 @@ const AddNewProduct = ({ title, productData }) => {
     title: '',
     description: '',
     tyreBrand: '',
-    vehicleBrand: '',
+    // vehicleBrand: '',
+    tyreRim: '',
+    pattern: '',
     tyreSize: '',
     tyreType: '',
     tyreWidth: '',
@@ -32,7 +34,9 @@ const AddNewProduct = ({ title, productData }) => {
 
   // State for various dropdown options
   const [tyreBrand, setTyreBrand] = useState([]);
-  const [vehicleBrand, setVehicleBrand] = useState([]);
+  // const [vehicleBrand, setVehicleBrand] = useState([]);
+  const [tyreRim, setTyreRim] = useState([]);
+  const [tyrePattern, setTyrePattern] = useState([]);
   const [tyreSize, setTyreSize] = useState([]);
   const [tyreType, setTyreType] = useState([]);
   const [tyreWidth, setTyreWidth] = useState([]);
@@ -87,13 +91,33 @@ const AddNewProduct = ({ title, productData }) => {
               }));
             }
             break;
-          case "VehicleBrand":
-            setVehicleBrand(array);
+          // case "VehicleBrand":
+          //   setVehicleBrand(array);
+          //   if (array.length > 0) {
+          //     // Set the initial value to the first option value
+          //     setProduct((prevProductData) => ({
+          //       ...prevProductData,
+          //       vehicleBrand: array[0].value,
+          //     }));
+          //   }
+          //   break;
+          case "TyreRim":
+            setTyreRim(array);
             if (array.length > 0) {
               // Set the initial value to the first option value
               setProduct((prevProductData) => ({
                 ...prevProductData,
-                vehicleBrand: array[0].value,
+                tyreRim: array[0].value,
+              }));
+            }
+            break;
+          case "TyrePattern":
+            setTyrePattern(array);
+            if (array.length > 0) {
+              // Set the initial value to the first option value
+              setProduct((prevProductData) => ({
+                ...prevProductData,
+                tyrePattern: array[0].value,
               }));
             }
             break;
@@ -144,7 +168,9 @@ const AddNewProduct = ({ title, productData }) => {
     };
 
     getData("TyreBrands");
-    getData("VehicleBrand");
+    // getData("VehicleBrand");
+    getData("TyreRim");
+    getData("TyrePattern");
     getData("TyreSize");
     getData("TyreType");
     getData("TyreWidth");
@@ -192,13 +218,16 @@ const AddNewProduct = ({ title, productData }) => {
         title: product.title,
         description: product.description,
         tyreBrand: product.tyreBrand,
-        vehicleBrand: product.vehicleBrand,
+        // vehicleBrand: product.vehicleBrand,
+        tyreRim: product.tyreRim,
+        tyrePattern: product.tyrePattern,
         tyreSize: product.tyreSize,
         tyreType: product.tyreType,
         tyreWidth: product.tyreWidth,
         tyreAspect: product.tyreAspect,
         price: product.price,
         skuCode: product.skuCode,
+        status: product.status,
         images: imageUrls,
         updatedTime: currentDateTime.toLocaleString(),
       };
@@ -212,7 +241,9 @@ const AddNewProduct = ({ title, productData }) => {
         title: '',
         description: '',
         tyreBrand: '',
-        vehicleBrand: '',
+        // vehicleBrand: '',
+        tyreRim: '',
+        tyrePattern: '',
         tyreSize: '',
         tyreType: '',
         tyreWidth: '',
@@ -350,7 +381,7 @@ const AddNewProduct = ({ title, productData }) => {
             </div>
           </div>
 
-          <div className={styles.medium}>
+          {/* <div className={styles.medium}>
             <label htmlFor="vehicleBrand">Vehicle Brand</label>
             <div className={styles.select}>
               <select
@@ -378,6 +409,74 @@ const AddNewProduct = ({ title, productData }) => {
                     id: vehicleBrand.length,
                     popupTitle: "Vehicle Brand",
                     docName: "VehicleBrand",
+                  }));
+                }}
+              />
+            </div>
+          </div> */}
+          
+          <div className={styles.medium}>
+            <label htmlFor="tyreRim">Rim Size</label>
+            <div className={styles.select}>
+              <select
+                id="tyreRim"
+                name="tyreRim"
+                value={product.tyreRim}
+                onChange={(e) =>
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    tyreRim: e.target.value,
+                  }))
+                }
+                required
+              >
+                {tyreRim.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyreRim.length,
+                    popupTitle: "Tyre Rim Size",
+                    docName: "TyreRim",
+                  }));
+                }}
+              />
+            </div>
+          </div>
+
+          <div className={styles.medium}>
+            <label htmlFor="tyrePattern">Tyre Pattern</label>
+            <div className={styles.select}>
+              <select
+                id="tyrePattern"
+                name="tyrePattern"
+                value={product.tyrePattern}
+                onChange={(e) =>
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    tyrePattern: e.target.value,
+                  }))
+                }
+                required
+              >
+                {tyrePattern.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: tyrePattern.length,
+                    popupTitle: "Tyre Pattern",
+                    docName: "TyrePattern",
                   }));
                 }}
               />
