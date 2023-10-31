@@ -21,7 +21,7 @@ const SingleProduct = ({ data }) => {
             querySnapshot.forEach((doc) => {
                 // array.push()
                 setTyreBrand(doc.data());
-                console.log("tyreBrand", tyreBrand);
+                // console.log("tyreBrand", tyreBrand);
             });
         }
     }
@@ -77,29 +77,29 @@ const SingleProduct = ({ data }) => {
                     <div className={styles.overviewContainer}>
                         <div className={styles.eachOverview}>
                             <h5>Width</h5>
-                            <p>{data.width}</p>
+                            <p>{data.tyreWidth}</p>
                         </div>
                         <div className={styles.eachOverview}>
-                            <h5>Rim Diameter in Inches</h5>
-                            <p>{data.rim}</p>
+                            <h5>Tyre size</h5>
+                            <p>{data.tyreSize}</p>
                         </div>
                         <div className={styles.eachOverview}>
-                            <h5>Speed Rating</h5>
-                            <p>{data.speed}</p>
+                            <h5>Tyre pattern</h5>
+                            <p>{data.tyrePattern}</p>
                         </div>
                     </div>
                     <div className={styles.overviewContainer}>
                         <div className={styles.eachOverview}>
-                            <h5>Aspect Ratio</h5>
-                            <p>{data.ratio}</p>
+                            <h5>Tyre Aspect</h5>
+                            <p>{data.tyreAspect}</p>
                         </div>
                         <div className={styles.eachOverview}>
-                            <h5>Load Index</h5>
-                            <p>{data.loadIndex}</p>
+                            <h5>Tyre type</h5>
+                            <p>{data.tyreType}</p>
                         </div>
                         <div className={styles.eachOverview}>
-                            <h5>Tubeless</h5>
-                            <p>{data.tubeless ? 'Yes' : 'No'}</p>
+                            <h5>Status</h5>
+                            <p>{data.status}</p>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ const SingleProduct = ({ data }) => {
                 </div>
                 <div className={styles.content}>
                     <h2>Description</h2>
-                    <p>{data.desc}</p>
+                    <p>{data.description}</p>
                 </div>
             </div>
         </div>

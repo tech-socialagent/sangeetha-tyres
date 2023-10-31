@@ -5,7 +5,7 @@ import Footer from '@/Components/Common/Footer'
 import SingleProduct from '@/Components/Products/SingleProduct'
 import { useRouter } from 'next/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
-import db from '../../FirebaseConfig'
+import db from '../../FirebaseConfig';
 
 const IndividualProduct = () => {
     const [productData, setProductData] = useState([])

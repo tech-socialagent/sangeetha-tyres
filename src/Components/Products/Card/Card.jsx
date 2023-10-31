@@ -4,8 +4,25 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import db from '../../../FirebaseConfig'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const Card = ({ data }) => {
+
+    //Image Slider
+
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: false,
+        arrows: false,
+        autoplay: false,
+    };
+
     const [tyreBrand, setTyreBrand] = useState([])
     const router = useRouter();
 
@@ -40,7 +57,11 @@ const Card = ({ data }) => {
     return (
         <div className={styles.eachProduct}>
             <div className={styles.productImageContainer}>
-                <Image src={data.images[0]} alt='Product Image' width={1000} height={1000} className={styles.productName} />
+                <Slider {...settings} className={styles.productImageContainer}>
+                    {data.images.map((item) => (
+                        <Image src={item} alt='Product Image' width={1000} height={1000} className={styles.productName} />
+                    ))}
+                </Slider>
             </div>
             <div className={styles.productDesc}>
                 <div className={styles.productTitle}>
