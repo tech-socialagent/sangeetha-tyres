@@ -58,14 +58,18 @@ const Card = ({ data }) => {
         <div className={styles.eachProduct}>
             <div className={styles.productImageContainer}>
                 <Slider {...settings} className={styles.productImageContainer}>
-                    {data.images.map((item) => (
-                        <Image src={item} alt='Product Image' width={1000} height={1000} className={styles.productName} />
+                    {data.images.map((item, index) => (
+                        <Image key={index} src={item} alt='Product Image' width={1000} height={1000} className={styles.productName} />
                     ))}
                 </Slider>
             </div>
             <div className={styles.productDesc}>
                 <div className={styles.productTitle}>
-                    <Image src={tyreBrand} alt='brand' width={1000} height={1000} className={styles.brandImage} />
+                    {tyreBrand ? (
+                        <Image src={tyreBrand} alt='brand' width={1000} height={1000} className={styles.brandImage} />
+                    ) : (
+                        <div className={styles.loadingPlaceholder}>Loading...</div>
+                    )}
                     <h2>Rs. {formatPrice(data.price)}</h2>
                 </div>
                 <h4>{data.title}</h4>

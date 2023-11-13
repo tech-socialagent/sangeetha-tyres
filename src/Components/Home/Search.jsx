@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Home/Search.module.css';
 import Image from 'next/image';
+import { collection, onSnapshot, } from "firebase/firestore";
+import db from '../../FirebaseConfig'
+import { useRouter } from 'next/router';
 
 const Search = () => {
-
+    const [tyreRim, setTyreRim] = useState([]);
+    const [tyreSize, setTyreSize] = useState([]);
+    const [tyreWidth, setTyreWidth] = useState([]);
+    const router = useRouter();
 
     const [data, setData] = useState(
         {
-            tyreType: 'car',
-            searchType: 'size',
-            width: 'Width',
-            ratio: 'Ratio',
-            rim: 'Rim',
+            width: '',
+            size: '',
+            rim: '',
         }
     );
 
     // Function to handle checkbox changes
-    const handleCheckboxChange = (event, value) => {
-        setData({ ...data, searchType: value });
-    };
+    // const handleCheckboxChange = (event, value) => {
+    //     setData({ ...data, searchType: value });
+    // };
 
     const handleSelectChange = (event) => {
         const { name, value } = event.target;
@@ -30,8 +34,52 @@ const Search = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data)
+
+        // Assuming your route is '/products', you can replace it with the correct route
+        const route = '/products';
+
+        // Build the query string based on the form data
+        const queryString = Object.keys(data)
+            .map(key => encodeURIComponent(key) + 'Param=' + encodeURIComponent(data[key]))
+            .join('&');
+
+        // Use the useRouter hook to push the new route with query parameters
+        router.push({
+            pathname: route,
+            query: queryString,
+        });
     }
+
+    // Function to fetch data from Firestore for dropdowns
+    useEffect(() => {
+        const getData = async (collectionName) => {
+            const q = collection(db, collectionName);
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                const array = [];
+                querySnapshot.forEach((doc) => {
+                    array.push(doc.data());
+                });
+                switch (collectionName) {
+
+                    case "TyreRim":
+                        setTyreRim(array);
+                        break;
+                    case "TyreSize":
+                        setTyreSize(array);
+                        break;
+                    case "TyreWidth":
+                        setTyreWidth(array);
+                        break;
+                    default:
+                        break;
+                }
+            });
+        };
+
+        getData("TyreRim");
+        getData("TyreSize");
+        getData("TyreWidth");
+    }, []);
 
     return (
         <div className={styles.searchWrap}>
@@ -52,51 +100,42 @@ const Search = () => {
                             Truck Tyres
                         </button>
                     </div>
-                    <div className={styles.options}>
-                        <div className={styles.option}>
-                            <input type='checkbox' id='size' onChange={(e) => handleCheckboxChange(e, "size")} checked={data.searchType === 'size' ? true : false} />
-                            <label htmlFor='size'>By Tyre Size</label>
-                        </div>
-                        <div className={styles.option}>
-                            <input type='checkbox' id='brand' onChange={(e) => handleCheckboxChange(e, "brand")} checked={data.searchType === 'brand' ? true : false} />
-                            <label htmlFor='brand'>By Tyre Brand</label>
-                        </div>
-                    </div>
                     <div className={styles.measurementWrap}>
-                        <h6>Tyre Size Guide</h6>
+                        {/* <h6>Tyre Size Guide</h6> */}
                         <div className={styles.sections}>
                             <select
+                                id="width"
                                 name="width"
                                 value={data.width}
+                                required
                                 onChange={handleSelectChange}
                             >
-                                <option selected disabled>Width</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="" disabled>Width</option>
+                                {tyreWidth.map((item, key) => (
+                                    item.value != 'null' ? <option key={key}>{item.value}</option> : ''
+                                ))}
                             </select>
                             <select
-                                name="ratio"
-                                value={data.ratio}
+                                name="size"
+                                value={data.size}
+                                required
                                 onChange={handleSelectChange}
                             >
-                                <option selected disabled>Ratio</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="" disabled>Size</option>
+                                {tyreSize.map((item, key) => (
+                                    item.value != 'null' ? <option key={key}>{item.value}</option> : ''
+                                ))}
                             </select>
                             <select
                                 name="rim"
                                 value={data.rim}
+                                required
                                 onChange={handleSelectChange}
                             >
-                                <option selected disabled>Rim</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="" disabled>Rim</option>
+                                {tyreRim.map((item, key) => (
+                                    item.value != 'null' ? <option key={key}>{item.value}</option> : ''
+                                ))}
                             </select>
                         </div>
                     </div>

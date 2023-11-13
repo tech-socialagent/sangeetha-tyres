@@ -89,34 +89,33 @@
     background-color: #fff;
     color: #000;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-
     position: absolute;
-    bottom: -257px;
+    /* bottom: -2px; */
+    top: 55px;
     left: 0;
 
     transition: all 0.4s ease-in-out;
 }
 
 .brand {
-    padding: 7px 0px;
-
+    padding: 1px 0px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 30% 70%;
-    align-items: center;
+    /* display: grid; */
+    /* grid-template-columns: 30% 70%; */
+    /* align-items: center; */
     gap: 0.5rem;
-
     border-bottom: 2.4px solid #dedede;
 }
 
 .brand:hover {
-    scale: 1.05;
-    transition: all .2s ease-in-out;
+    /* scale: 1.05; */
+    /* transition: all .2s ease-in-out; */
+    background: #0000000d;
 }
 
 .brandImage {
     width: 100%;
-    height: 35px;
+    height: 60px;
     object-fit: contain;
 }
 

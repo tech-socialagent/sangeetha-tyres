@@ -8,11 +8,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
- 
+import { collection, query, where, getDocs } from "firebase/firestore";
+import db from '../../FirebaseConfig'
+
 const Navbar = () => {
 
     const [brandOpen, setBrandOpen] = useState(false);
     const [navbarOpen, setNavbarOpen] = useState(false)
+    const [brandsData, setBrandsData] = useState([])
     const router = useRouter();
 
     // Access the current URL
@@ -21,33 +24,20 @@ const Navbar = () => {
     // Determine the current page
     const page = router.pathname;
 
-    const brandsData = [
-        {
-            id: 1,
-            image: '/assests/home/brands/brand1.webp',
-            brand: 'Bridgestone',
-        },
-        {
-            id: 2,
-            image: '/assests/home/brands/brand2.webp',
-            brand: 'Continental',
-        },
-        {
-            id: 3,
-            image: '/assests/home/brands/brand3.webp',
-            brand: 'Apollo Tyres',
-        },
-        {
-            id: 4,
-            image: '/assests/home/brands/brand4.webp',
-            brand: 'JK Tyres',
-        },
-        {
-            id: 5,
-            image: '/assests/home/brands/brand5.webp',
-            brand: 'Yokohama',
-        },
-    ];
+    const getData = async () => {
+        const array = [];
+        const q = query(collection(db, "TyreBrands"), where("value", "!=", 'null'));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            array.push(doc.data());
+        });
+        setBrandsData(array);
+    }
+    useEffect(() => {
+        getData();
+    }, [])
+
 
     return (
         <>
@@ -60,6 +50,9 @@ const Navbar = () => {
                         </Link>
                         <Link href='/services'>
                             <li style={{ color: page === '/services' || page === '/services/[service]' ? 'var(--Orange)' : '#000' }}>Services</li>
+                        </Link>
+                        <Link href='/products'>
+                            <li style={{ color: page === '/products' || page === '/products/[product]' ? 'var(--Orange)' : '#000' }}>Product</li>
                         </Link>
                         <Link href='/#contactUs'>
                             <li style={{ color: currentURL === '/#contactUs' ? 'var(--Orange)' : '#000' }}>Contact us</li>
@@ -82,6 +75,9 @@ const Navbar = () => {
                                     <Link href='/services'>
                                         <li style={{ color: page === '/services' || page === '/services/[service]' ? 'var(--Orange)' : '#000' }} onClick={() => setNavbarOpen(false)}>Services</li>
                                     </Link>
+                                    <Link href='/products'>
+                                        <li style={{ color: page === '/services' || page === '/services/[service]' ? 'var(--Orange)' : '#000' }} onClick={() => setNavbarOpen(false)}>Services</li>
+                                    </Link>
                                     <Link href='/#contactUs'>
                                         <li style={{ color: currentURL === '/#contactUs' ? 'var(--Orange)' : '#000' }} onClick={() => setNavbarOpen(false)}>Contact us</li>
                                     </Link>
@@ -91,7 +87,7 @@ const Navbar = () => {
                                     {brandsData.map((item, id) => (
                                         <div className={styles.brandPhone} key={id} onClick={() => setNavbarOpen(false)}>
                                             <Image src={item.image} alt='Brand' width={1000} height={1000} className={styles.brandPhoneImage} />
-                                            <span>{item.brand}</span>
+                                            {/* <span>{item.value}</span> */}
                                         </div>
                                     ))}
                                 </div>
@@ -110,9 +106,11 @@ const Navbar = () => {
                                 style={{ opacity: brandOpen ? '1' : '0', pointerEvents: brandOpen ? 'all' : 'none' }}
                             >
                                 {brandsData.map((item, id) => (
-                                    <div className={styles.brand} key={id}>
+                                    <div
+                                        onClick={() => router.push(`/products?tyreBrandParam=${item.value}`)}
+                                        className={styles.brand} key={id} >
                                         <Image src={item.image} alt='Brand' width={1000} height={1000} className={styles.brandImage} />
-                                        <span>{item.brand}</span>
+                                        {/* <span>{item.value}</span> */}
                                     </div>
                                 ))}
                             </div>

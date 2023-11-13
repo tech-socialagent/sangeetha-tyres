@@ -6,6 +6,7 @@ import { collection, getDocs, query, where, onSnapshot } from 'firebase/firestor
 import { AiFillCloseCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { LuFilter } from 'react-icons/lu'
 import { GrFormClose } from 'react-icons/gr'
+import { useRouter } from 'next/router';
 
 const ProductListing = () => {
     const [data, setData] = useState([]);
@@ -17,9 +18,13 @@ const ProductListing = () => {
     const [selectedTyreTypes, setSelectedTyreTypes] = useState([]);
     const [selectedTyreSizes, setSelectedTyreSizes] = useState([]);
     const [selectedTyrePatterns, setSelectedTyrePatterns] = useState([]);
-    const [selectedTyreRims, setSelectedTyreRims] = useState([]);
+    const [selectedTyreRim, setSelectedTyreRim] = useState([]);
 
     const [mobileFilter, setMobileFilter] = useState(false)
+    const router = useRouter();
+    // const tyreBrandParam = router.query.tyreBrand;
+
+    const { tyreBrandParam, widthParam, sizeParam, rimParam } = router.query;
 
 
     const readData = async () => {
@@ -53,8 +58,24 @@ const ProductListing = () => {
         if (selectedTyrePatterns.length > 0) {
             q = query(q, where('tyrePattern', 'in', selectedTyrePatterns));
         }
-        if (selectedTyreRims.length > 0) {
-            q = query(q, where('tyreRim', 'in', selectedTyreRims));
+        if (selectedTyreRim.length > 0) {
+            q = query(q, where('tyreRim', 'in', selectedTyreRim));
+        }
+
+        // Apply other filters based on URL parameters
+        if (tyreBrandParam) {
+            q = query(q, where('tyreBrand', '==', tyreBrandParam));
+            // setSelectedTyreBrands(tyreBrand)
+        }
+        if (widthParam) {
+            q = query(q, where('tyreWidth', '==', widthParam));
+        }
+        if (sizeParam) {
+            q = query(q, where('tyreSize', '==', sizeParam));
+        }
+        if (rimParam) {
+            q = query(q, where('tyreRim', '==', rimParam));
+            // setSelectedTyreRim(rim)
         }
 
         const querySnapshot = await getDocs(q);
@@ -64,9 +85,10 @@ const ProductListing = () => {
         setData(array);
     };
 
+
     useEffect(() => {
         readData();
-    }, [selectedTyreBrands, selectedVehicleBrands, selectedTyreAspects, selectedTyreWidths, selectedTyreTypes, selectedTyreSizes, selectedTyrePatterns, selectedTyreRims]);
+    }, [selectedTyreBrands, selectedVehicleBrands, selectedTyreAspects, selectedTyreWidths, selectedTyreTypes, selectedTyreSizes, selectedTyrePatterns, selectedTyreRim]);
 
     const [tyreBrand, setTyreBrand] = useState([]);
     const [vehicleType, setVehicleType] = useState([]);
@@ -210,8 +232,10 @@ const ProductListing = () => {
     };
 
     const handleTyreRimChange = (value) => {
-        setSelectedTyreRims((prevSelectedRims) => {
-            if (prevSelectedRims.includes(value)) {
+        setSelectedTyreRim((prevSelectedRims) => {
+            const isRimSelected = prevSelectedRims.includes(value);
+
+            if (isRimSelected) {
                 return prevSelectedRims.filter((selectedRim) => selectedRim !== value);
             } else {
                 return [...prevSelectedRims, value];
@@ -219,7 +243,7 @@ const ProductListing = () => {
         });
     };
 
-    const renderFilter = (filterName, items, onChange) => (
+    const renderFilter = (filterName, items, onChange, selectedPrama) => (
         <div className={styles.filter}>
             <div className={styles.filterTitle} onClick={() => toggleFilter(filterName)}>
                 {filterName}
@@ -241,6 +265,8 @@ const ProductListing = () => {
                                 name={`${filterName}_${key}`}
                                 value={item.value}
                                 onChange={() => onChange(item.value)}
+                                checked={selectedPrama == item.value ? true : ''}
+                            // checked={selectedItems && selectedItems.includes(item.value)}
                             />
                             <label htmlFor={`${filterName}_${key}`}>{item.value}</label>
                         </div>
@@ -261,7 +287,7 @@ const ProductListing = () => {
         setSelectedTyreTypes([]);
         setSelectedTyreSizes([]);
         setSelectedTyrePatterns([]);
-        setSelectedTyreRims([]);
+        setSelectedTyreRim([]);
         // Uncheck all checkboxes
         document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
             checkbox.checked = false;
@@ -274,13 +300,13 @@ const ProductListing = () => {
                 <button className={styles.clearBtn} onClick={handleClearFilters}>
                     Clear Filter
                 </button>
-                {renderFilter('Tyre Brands', tyreBrand, handleTyreBrandChange)}
+                {renderFilter('Tyre Brands', tyreBrand, handleTyreBrandChange, tyreBrandParam)}
                 {renderFilter('Vehicle Types', vehicleType, handleVehicleTypeChange)}
-                {renderFilter('Tyre Rims', tyreRim, handleTyreRimChange)}
+                {renderFilter('Tyre Rims', tyreRim, handleTyreRimChange, rimParam)}
                 {renderFilter('Tyre Patterns', tyrePattern, handleTyrePatternChange)}
-                {renderFilter('Tyre Sizes', tyreSize, handleTyreSizeChange)}
+                {renderFilter('Tyre Sizes', tyreSize, handleTyreSizeChange, sizeParam)}
                 {renderFilter('Tyre Types', tyreType, handleTyreTypeChange)}
-                {renderFilter('Tyre Widths', tyreWidth, handleTyreWidthChange)}
+                {renderFilter('Tyre Widths', tyreWidth, handleTyreWidthChange, widthParam)}
                 {renderFilter('Tyre Aspects', tyreAspect, handleTyreAspectChange)}
             </div>
             <div className={styles.mobileFilterWrap} id="child">

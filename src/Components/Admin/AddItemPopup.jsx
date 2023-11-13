@@ -26,14 +26,24 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if the ID already exists
-        const querySnapshot = await getDocs(query(collection(db, docName), where("value", "==", value)));
+        // Check if the ID or Value already exists
+        const querySnapshotValue = await getDocs(query(collection(db, docName), where("value", "==", value)));
+        const querySnapshotId = await getDocs(query(collection(db, docName), where("id", "==", numericId)));
 
-        if (!querySnapshot.empty) {
+        if (value == '') {
+            alert("Enter the brand Name");
+            return; // Do not proceed further
+        }
+        else if (!querySnapshotValue.empty) {
             alert(`An item "${value}" already exists.`);
             return; // Do not proceed further
-        } 
-        else if(image == null){
+        }
+        else if (!querySnapshotId.empty) {
+            setnumericId(Math.floor(Math.random() * (1000 - 1 + 1)) + 1);
+            handleSubmit();
+            return; // Do not proceed further
+        }
+        else if (image == null) {
             alert(`Upload Tyre Brand Logo`);
             return; // Do not proceed further
         }
@@ -50,6 +60,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
                 const docRef = await addDoc(collection(db, docName), {
                     value: value,
                     image: downloadURL,
+                    id: numericId
                 });
             }
             else {
@@ -74,7 +85,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
                     <div className={styles.inputWrap}>
                         <label htmlFor="">ID</label>
                         <input
-                        disabled
+                            disabled
                             onChange={(e) => setNumericId(parseInt(e.target.value, 10))}
                             type="number"
                             value={numericId}
