@@ -1,73 +1,326 @@
-import React, { useEffect, useState } from 'react'
-import styles from '@/styles/Products/Product.module.css'
-import { collection, query, where, getDocs } from "firebase/firestore";
-import db from '../../FirebaseConfig'
+import React, { useEffect, useState } from 'react';
+import styles from '@/styles/Products/Product.module.css';
+import db from '../../FirebaseConfig';
 import Card from './Card/Card';
-import { TiTick } from 'react-icons/ti';
-
-//Testing Data
-// import { products } from './data';
+import { collection, getDocs, query, where, onSnapshot } from 'firebase/firestore';
+import { AiFillCloseCircle, AiFillPlusCircle } from 'react-icons/ai';
+import { LuFilter } from 'react-icons/lu'
+import { GrFormClose } from 'react-icons/gr'
 
 const ProductListing = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [expandedFilters, setExpandedFilters] = useState([]);
+    const [selectedTyreBrands, setSelectedTyreBrands] = useState([]);
+    const [selectedVehicleBrands, setSelectedVehicleBrands] = useState([]);
+    const [selectedTyreAspects, setSelectedTyreAspects] = useState([]);
+    const [selectedTyreWidths, setSelectedTyreWidths] = useState([]);
+    const [selectedTyreTypes, setSelectedTyreTypes] = useState([]);
+    const [selectedTyreSizes, setSelectedTyreSizes] = useState([]);
+    const [selectedTyrePatterns, setSelectedTyrePatterns] = useState([]);
+    const [selectedTyreRims, setSelectedTyreRims] = useState([]);
+
+    const [mobileFilter, setMobileFilter] = useState(false)
+
 
     const readData = async () => {
-        let array = []
-        const q = query(collection(db, "products"), where("status", "==", "Active"));
+        let array = [];
+        let q = collection(db, 'products');
+
+        // Apply the filter condition for selected Tyre Brands
+        if (selectedTyreBrands.length > 0) {
+            q = query(q, where('status', '==', 'Active'), where('tyreBrand', 'in', selectedTyreBrands));
+        } else {
+            q = query(q, where('status', '==', 'Active'));
+        }
+
+        // Apply the filter condition for selected Vehicle Types
+        if (selectedVehicleBrands.length > 0) {
+            q = query(q, where('vehicleType', 'in', selectedVehicleBrands));
+        }
+
+        if (selectedTyreAspects.length > 0) {
+            q = query(q, where('tyreAspect', 'in', selectedTyreAspects));
+        }
+        if (selectedTyreWidths.length > 0) {
+            q = query(q, where('tyreWidth', 'in', selectedTyreWidths));
+        }
+        if (selectedTyreTypes.length > 0) {
+            q = query(q, where('tyreType', 'in', selectedTyreTypes));
+        }
+        if (selectedTyreSizes.length > 0) {
+            q = query(q, where('tyreSize', 'in', selectedTyreSizes));
+        }
+        if (selectedTyrePatterns.length > 0) {
+            q = query(q, where('tyrePattern', 'in', selectedTyrePatterns));
+        }
+        if (selectedTyreRims.length > 0) {
+            q = query(q, where('tyreRim', 'in', selectedTyreRims));
+        }
+
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            array.push(doc.data())
+            array.push(doc.data());
         });
-        setData(array)
-    }
+        setData(array);
+    };
 
     useEffect(() => {
         readData();
-    }, [])
+    }, [selectedTyreBrands, selectedVehicleBrands, selectedTyreAspects, selectedTyreWidths, selectedTyreTypes, selectedTyreSizes, selectedTyrePatterns, selectedTyreRims]);
 
+    const [tyreBrand, setTyreBrand] = useState([]);
+    const [vehicleType, setVehicleType] = useState([]);
+    const [tyreRim, setTyreRim] = useState([]);
+    const [tyrePattern, setTyrePattern] = useState([]);
+    const [tyreSize, setTyreSize] = useState([]);
+    const [tyreType, setTyreType] = useState([]);
+    const [tyreWidth, setTyreWidth] = useState([]);
+    const [tyreAspect, setTyreAspect] = useState([]);
 
+    useEffect(() => {
+        const getData = async (collectionName) => {
+            const q = collection(db, collectionName);
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                const array = [];
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().value !== 'null') {
+                        array.push(doc.data());
+                    }
+                });
+                switch (collectionName) {
+                    case 'TyreBrands':
+                        setTyreBrand(array);
+                        break;
+                    case 'VehicleType':
+                        setVehicleType(array);
+                        break;
+                    case 'TyreRim':
+                        setTyreRim(array);
+                        break;
+                    case 'TyrePattern':
+                        setTyrePattern(array);
+                        break;
+                    case 'TyreSize':
+                        setTyreSize(array);
+                        break;
+                    case 'TyreType':
+                        setTyreType(array);
+                        break;
+                    case 'TyreWidth':
+                        setTyreWidth(array);
+                        break;
+                    case 'TyreAspect':
+                        setTyreAspect(array);
+                        break;
+                    default:
+                        break;
+                }
+            });
+        };
 
-    const [select, setSelect] = useState('All');
+        getData('TyreBrands');
+        getData('VehicleType');
+        getData('TyreRim');
+        getData('TyrePattern');
+        getData('TyreSize');
+        getData('TyreType');
+        getData('TyreWidth');
+        getData('TyreAspect');
+    }, []);
 
-    const tyreBrand = [
-        "Sturdo Passenger",
-        "Ccopia",
-        "Duelee",
-        "Alenzo",
-        "Potenzo",
-    ]
+    const toggleFilter = (filterTitle) => {
+        setExpandedFilters((prevFilters) => {
+            if (prevFilters.includes(filterTitle)) {
+                return prevFilters.filter((title) => title !== filterTitle);
+            } else {
+                return [...prevFilters, filterTitle];
+            }
+        });
+    };
 
+    const handleTyreBrandChange = (brand) => {
+        setSelectedTyreBrands((prevSelectedBrands) => {
+            if (prevSelectedBrands.includes(brand)) {
+                return prevSelectedBrands.filter((selectedBrand) => selectedBrand !== brand);
+            } else {
+                return [...prevSelectedBrands, brand];
+            }
+        });
+    };
 
+    const handleVehicleTypeChange = (value) => {
+        console.log("value", value);
+        setSelectedVehicleBrands((prevSelectedBrands) => {
+            if (prevSelectedBrands.includes(value)) {
+                return prevSelectedBrands.filter((selectedBrand) => selectedBrand !== value);
+            } else {
+                return [...prevSelectedBrands, value];
+            }
+        });
+    };
+
+    const handleTyreAspectChange = (value) => {
+        setSelectedTyreAspects((prevSelectedAspects) => {
+            if (prevSelectedAspects.includes(value)) {
+                return prevSelectedAspects.filter((selectedAspect) => selectedAspect !== value);
+            } else {
+                return [...prevSelectedAspects, value];
+            }
+        });
+    };
+
+    const handleTyreWidthChange = (value) => {
+        setSelectedTyreWidths((prevSelectedWidths) => {
+            if (prevSelectedWidths.includes(value)) {
+                return prevSelectedWidths.filter((selectedWidth) => selectedWidth !== value);
+            } else {
+                return [...prevSelectedWidths, value];
+            }
+        });
+    };
+
+    const handleTyreTypeChange = (value) => {
+        setSelectedTyreTypes((prevSelectedTypes) => {
+            if (prevSelectedTypes.includes(value)) {
+                return prevSelectedTypes.filter((selectedType) => selectedType !== value);
+            } else {
+                return [...prevSelectedTypes, value];
+            }
+        });
+    };
+
+    const handleTyreSizeChange = (value) => {
+        setSelectedTyreSizes((prevSelectedSizes) => {
+            if (prevSelectedSizes.includes(value)) {
+                return prevSelectedSizes.filter((selectedSize) => selectedSize !== value);
+            } else {
+                return [...prevSelectedSizes, value];
+            }
+        });
+    };
+
+    const handleTyrePatternChange = (value) => {
+        setSelectedTyrePatterns((prevSelectedPatterns) => {
+            if (prevSelectedPatterns.includes(value)) {
+                return prevSelectedPatterns.filter((selectedPattern) => selectedPattern !== value);
+            } else {
+                return [...prevSelectedPatterns, value];
+            }
+        });
+    };
+
+    const handleTyreRimChange = (value) => {
+        setSelectedTyreRims((prevSelectedRims) => {
+            if (prevSelectedRims.includes(value)) {
+                return prevSelectedRims.filter((selectedRim) => selectedRim !== value);
+            } else {
+                return [...prevSelectedRims, value];
+            }
+        });
+    };
+
+    const renderFilter = (filterName, items, onChange) => (
+        <div className={styles.filter}>
+            <div className={styles.filterTitle} onClick={() => toggleFilter(filterName)}>
+                {filterName}
+                <button >
+                    {expandedFilters.includes(filterName) ? (
+                        <AiFillCloseCircle className={styles.closeIcon} />
+                    ) : (
+                        <AiFillPlusCircle className={styles.plusIcon} />
+                    )}
+                </button>
+            </div>
+            {expandedFilters.includes(filterName) && (
+                <form action="" style={{ display: 'flex', flexDirection: 'column' }}>
+                    {items.map((item, key) => (
+                        <div key={key} className={styles.checkboxWrap} >
+                            <input
+                                type="checkbox"
+                                id={`${filterName}_${key}`}
+                                name={`${filterName}_${key}`}
+                                value={item.value}
+                                onChange={() => onChange(item.value)}
+                            />
+                            <label htmlFor={`${filterName}_${key}`}>{item.value}</label>
+                        </div>
+                    ))}
+                </form>
+            )}
+        </div>
+    );
+
+    const handleClearFilters = () => {
+        console.log("clear");
+        setMobileFilter(false);
+        // Reset all filter selections
+        setSelectedTyreBrands([]);
+        setSelectedVehicleBrands([]);
+        setSelectedTyreAspects([]);
+        setSelectedTyreWidths([]);
+        setSelectedTyreTypes([]);
+        setSelectedTyreSizes([]);
+        setSelectedTyrePatterns([]);
+        setSelectedTyreRims([]);
+        // Uncheck all checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+    };
 
     return (
         <div className={styles.sectionWrap}>
-            <div className={styles.filterWrap} id='child'>
-                <div className={styles.filterContainer}>
-                    <div className={styles.filterTitle}>
-                        <h3>Tyre Brand</h3>
-                        {/* <span>{open === 'tyreBrand' ? '-' : '+'}</span> */}
-                    </div>
-                    <div className={styles.menuContainer}>
-                        {tyreBrand.map((item) => (
-                            <div className={styles.eachMenu} onClick={() => setSelect(item)}>
-                                <div className={styles.square}>
-                                    <span style={{ opacity: select === item ? '1' : '0' }}>
-                                        <TiTick />
-                                    </span>
-                                </div>
-                                <span>{item}</span>
-                            </div>
-                        ))}
-                    </div>
+            <div className={styles.filterWrap} id="child">
+                <button className={styles.clearBtn} onClick={handleClearFilters}>
+                    Clear Filter
+                </button>
+                {renderFilter('Tyre Brands', tyreBrand, handleTyreBrandChange)}
+                {renderFilter('Vehicle Types', vehicleType, handleVehicleTypeChange)}
+                {renderFilter('Tyre Rims', tyreRim, handleTyreRimChange)}
+                {renderFilter('Tyre Patterns', tyrePattern, handleTyrePatternChange)}
+                {renderFilter('Tyre Sizes', tyreSize, handleTyreSizeChange)}
+                {renderFilter('Tyre Types', tyreType, handleTyreTypeChange)}
+                {renderFilter('Tyre Widths', tyreWidth, handleTyreWidthChange)}
+                {renderFilter('Tyre Aspects', tyreAspect, handleTyreAspectChange)}
+            </div>
+            <div className={styles.mobileFilterWrap} id="child">
+                <div className={styles.filterIcon}
+                    onClick={() => setMobileFilter(true)}
+                >
+                    <LuFilter />
+                    <div className="">Filter</div>
                 </div>
+
+                <div className={mobileFilter ? styles.mobile : styles.mobileNotActive}>
+                    <div className={styles.filterClose}>
+                        <GrFormClose onClick={() => setMobileFilter(false)} />
+                    </div>
+                    <div className={styles.btns}>
+                        <button className={styles.clearBtn} onClick={handleClearFilters}>
+                            Clear Filter
+                        </button>
+                        <button className={styles.clearBtn} onClick={() => setMobileFilter(false)}>
+                            Apply Filter
+                        </button>
+                    </div>
+                    {renderFilter('Tyre Brands', tyreBrand, handleTyreBrandChange)}
+                    {renderFilter('Vehicle Types', vehicleType, handleVehicleTypeChange)}
+                    {renderFilter('Tyre Rims', tyreRim, handleTyreRimChange)}
+                    {renderFilter('Tyre Patterns', tyrePattern, handleTyrePatternChange)}
+                    {renderFilter('Tyre Sizes', tyreSize, handleTyreSizeChange)}
+                    {renderFilter('Tyre Types', tyreType, handleTyreTypeChange)}
+                    {renderFilter('Tyre Widths', tyreWidth, handleTyreWidthChange)}
+                    {renderFilter('Tyre Aspects', tyreAspect, handleTyreAspectChange)}
+                </div>
+
             </div>
             <div className={styles.productList}>
                 {data.map((item) => (
-                    <Card data={item} />
+                    <Card data={item} key={item.id} />
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ProductListing;

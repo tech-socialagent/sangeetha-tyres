@@ -54,7 +54,7 @@ export default function Admin() {
                 </div>
                 <div className={styles.rightDash}>
                   {
-                    daskboard === 'products' ? <ReadProduct /> : daskboard === 'addProduct' ? <AddNewProduct /> : ''
+                    daskboard === 'products' ? <ReadProduct /> : daskboard === 'addProduct' ? <AddNewProduct setDaskboard={setDaskboard} /> : ''
                   }
                 </div>
               </div>

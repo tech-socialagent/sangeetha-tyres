@@ -10,6 +10,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
     const { popupActive, setPopupActive } = useContext(PopupContext);
     const [value, setValue] = useState('');
     const [image, setImage] = useState(null);
+    const [numericId, setnumericId] = useState(Math.floor(Math.random() * (1000 - 1 + 1)) + 1);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -31,7 +32,12 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
         if (!querySnapshot.empty) {
             alert(`An item "${value}" already exists.`);
             return; // Do not proceed further
-        } else {
+        } 
+        else if(image == null){
+            alert(`Upload Tyre Brand Logo`);
+            return; // Do not proceed further
+        }
+        else {
 
             if (docName === "TyreBrands") {
                 const storageRef = ref(storage, `TyreBrand/${image.name}`);
@@ -50,6 +56,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
                 // Save the data in Firestore
                 const docRef = await addDoc(collection(db, docName), {
                     value: value,
+                    id: numericId
                 });
             }
             setPopupActive(false);
@@ -64,14 +71,15 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
                 <AiOutlineClose onClick={() => setPopupActive(false)} className={styles.closeBtn} />
                 <div className={styles.formWrap}>
                     <h2>Add new {popupTitle}</h2>
-                    {/* <div className={styles.inputWrap}>
+                    <div className={styles.inputWrap}>
                         <label htmlFor="">ID</label>
                         <input
+                        disabled
                             onChange={(e) => setNumericId(parseInt(e.target.value, 10))}
                             type="number"
                             value={numericId}
                         />
-                    </div> */}
+                    </div>
                     <div className={styles.inputWrap}>
                         <label htmlFor="">Name</label>
                         <input type="text" placeholder={`Enter the ${popupTitle}`} onChange={(e) => setValue(e.target.value)} />
@@ -80,7 +88,7 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
                         <>
                             <div className={styles.inputWrap}>
                                 <label htmlFor="">{popupTitle}</label>
-                                <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} required />
+                                <input type="file" accept=".png" onChange={handleFileChange} required />
                             </div>
                             {image && (
                                 <div className={styles.imagePreview}>

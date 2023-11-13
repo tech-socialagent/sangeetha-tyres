@@ -37,13 +37,13 @@ const Card = ({ data }) => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             // array.push()
-            setTyreBrand(doc.data())
+            setTyreBrand(doc.data().image)
         });
     }
 
     useEffect(() => {
         readData();
-    }, [])
+    }, [data])
 
     const formatPrice = (price) => {
         const numericPrice = parseFloat(price); // Ensure price is a valid number
@@ -65,9 +65,10 @@ const Card = ({ data }) => {
             </div>
             <div className={styles.productDesc}>
                 <div className={styles.productTitle}>
-                    <Image src={tyreBrand.image} alt='brand' width={1000} height={1000} className={styles.brandImage} />
+                    <Image src={tyreBrand} alt='brand' width={1000} height={1000} className={styles.brandImage} />
                     <h2>Rs. {formatPrice(data.price)}</h2>
                 </div>
+                <h4>{data.title}</h4>
                 <h4>{data.tyreType}</h4>
                 <h6>Tyre Size : {data.tyreSize}</h6>
                 <button className={styles.enquiryBtn} onClick={(e) => handleClick(e, data.skuCode)}>ENQUIRY</button>

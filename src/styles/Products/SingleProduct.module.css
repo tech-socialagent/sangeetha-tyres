@@ -19,6 +19,7 @@
     grid-template-columns: 200px auto;
 
     border: 1px solid #000;
+    border-left: none;
 }
 
 .scrollingImages {
@@ -26,11 +27,11 @@
     height: inherit;
     overflow-y: scroll;
     border: 1.5px solid black;
-
+border-top: none;
     display: flex;
     flex-direction: column;
-    gap: 1.5px;
-    background-color: #000;
+    /* gap: 1.5px; */
+    background-color: #fff;
 }
 
 .scrollingImages::-webkit-scrollbar {
@@ -218,6 +219,10 @@
     .scrollingImageContainer {
         max-height: 180px;
         min-height: 180px;
+        border: 1px #000 solid;
+        border-left: none;
+        border-right: none;
+        
     }
 
     .overview {
@@ -229,11 +234,12 @@
     .images {
         height: 65vw;
         grid-template-columns: 30% auto;
+
     }
 
     .scrollingImageContainer {
-        min-height: 180px;
-        max-height: 180px;
+        min-height: 100px;
+        max-height: 100px;
     }
 
     .overview {
@@ -260,11 +266,13 @@
 
     .details h1 {
         margin: 2.5% 0;
+        margin-bottom: 0;
         font-size: 20px;
     }
 
     .details h2 {
-        font-size: 14px;
+        font-size: 18px;
+        margin-top: 20px;
     }
 
     .details h5 {
@@ -275,7 +283,7 @@
         font-size: 14px;
         letter-spacing: 0.2px;
         padding: 12px 18px;
-        width: 80%;
+        width: max-content;
     }
 
     .title {
@@ -283,7 +291,7 @@
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .brandImage1 {
         width: 50vw;
     }

@@ -15,7 +15,7 @@ const index = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <>
-                {/* <Navbar /> */}
+                <Navbar />
                 <div className={styles.banner}>
                     <h3>BRIDGESTONE TYRE CATEGORIES</h3>
                 </div>

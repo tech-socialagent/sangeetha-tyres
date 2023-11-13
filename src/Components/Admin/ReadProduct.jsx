@@ -6,14 +6,11 @@ const ReadProduct = () => {
     const [editProduct, setEditProduct] = useState(false)
     const [productData, setProductData] = useState([])
 
-    useEffect(() => {
-        console.log("productData", productData);
-    }, [productData])
 
     return (
         <>
             {
-                editProduct ? <UpdateProduct productData={productData} setEditProduct={setEditProduct}  /> :<ProductList setProductData={setProductData} setEditProduct={setEditProduct} />  
+                editProduct ? <UpdateProduct productData={productData} setEditProduct={setEditProduct} /> : <ProductList setProductData={setProductData} setEditProduct={setEditProduct} />
             }
 
         </>

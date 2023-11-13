@@ -1,18 +1,19 @@
-.eachProduct{
+.eachProduct {
     width: 21vw;
     background-color: #f9f9f9;
     border-radius: 10px;
+    padding-top: 10px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.productImageContainer{
+.productImageContainer {
     width: inherit;
     height: 12vw;
     background-color: #fff;
 }
 
-.productName{
+.productName {
     width: 100%;
     height: 12vw !important;
 
@@ -20,7 +21,7 @@
     object-fit: contain;
 }
 
-.productDesc{
+.productDesc {
     padding: 4% 6%;
 
     display: flex;
@@ -28,40 +29,90 @@
     gap: 0.7rem;
 }
 
-.productTitle{
+.productTitle {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.brandImage{
+.brandImage {
     /* flex:1; */
-
     width: auto;
     height: 45px;
     object-fit: contain;
 }
 
-.productTitle h2{
+.productTitle h2 {
     font-size: 18px;
 }
 
-.productDesc h4{
+.productDesc h4 {
     font-size: 18px;
     color: var(--Dark-grey);
 }
 
-.productDesc h6{
+.productDesc h6 {
     font-size: 12px;
     font-weight: 500;
     color: var(--Grey);
     text-decoration: underline;
 }
 
-.enquiryBtn{
+.enquiryBtn {
     color: var(--Orange);
     border: 2px solid var(--Orange);
     background-color: transparent;
     padding: 7px 0;
     border-radius: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+    .eachProduct {
+        width: 28vw;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .eachProduct {
+        width: 47%;
+    }
+
+    .productImageContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    /* .productName {
+        height: 3000px;
+    } */
+    .productName {
+        height: 48vw !important;
+    }
+
+    /* .productTitle{
+        flex-direction: column;
+    } */
+    .brandImage {
+        width: 40%;
+    }
+
+    .productTitle h2 {
+        font-size: 16px;
+        width: 60%;
+        text-align: right;
+    }
+
+    .productDesc h4 {
+        font-size: 16px;
+        display: none;
+    }
+
+    .enquiryBtn {
+        color: var(--Orange);
+        border: 2px solid var(--Orange);
+        background-color: transparent;
+        padding: 7px 0;
+        border-radius: 5px;
+        font-size: 12px;
+    }
 }

@@ -34,4 +34,13 @@
 
 .editIcon{
     font-size: 26px;
+    cursor: pointer;
+}
+
+.deleteIcon{
+    font-size: 26px;
+}
+.deleteIcon:hover{
+    color: red;
+    cursor: pointer;
 }

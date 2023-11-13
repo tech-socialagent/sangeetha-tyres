@@ -28,7 +28,7 @@ const SingleProduct = ({ data }) => {
 
     useEffect(() => {
         readData();
-    }, [])
+    }, [data.tyreBrand])
 
     const formatPrice = (price) => {
         const numericPrice = parseFloat(price); // Ensure price is a valid number
@@ -62,8 +62,8 @@ const SingleProduct = ({ data }) => {
                     {tyreBrand.image && (
                         <Image src={tyreBrand.image} alt='brand' width={1000} height={1000} className={styles.brandImage} />
                     )}
-                    <h6>{data.title}</h6>
-                    <h1>{data.description}</h1>
+                    <h1>{data.title}</h1>
+                    <h6>{data.description}</h6>
                     <h2>M.R.P : &nbsp;₹{formatPrice(data.price)}</h2>
                     <h5>Inclusive of all taxes</h5>
                     <button className={styles.detailsBtn}>SEND ENQUIRY</button>
@@ -77,30 +77,30 @@ const SingleProduct = ({ data }) => {
                     <div className={styles.overviewContainer}>
                         <div className={styles.eachOverview}>
                             <h5>Width</h5>
-                            <p>{data.tyreWidth}</p>
+                            <p>{data.tyreWidth == 'null' ? '-' : data.tyreWidth}</p>
                         </div>
                         <div className={styles.eachOverview}>
                             <h5>Tyre size</h5>
-                            <p>{data.tyreSize}</p>
+                            <p>{data.tyreSize == 'null' ? '-' : data.tyreSize}</p>
                         </div>
                         <div className={styles.eachOverview}>
                             <h5>Tyre pattern</h5>
-                            <p>{data.tyrePattern}</p>
+                            <p>{data.tyrePattern == 'null' ? '-' : data.tyrePattern}</p>
                         </div>
                     </div>
                     <div className={styles.overviewContainer}>
                         <div className={styles.eachOverview}>
                             <h5>Tyre Aspect</h5>
-                            <p>{data.tyreAspect}</p>
+                            <p>{data.tyreAspect == 'null' ? '-' : data.tyreAspect}</p>
                         </div>
                         <div className={styles.eachOverview}>
                             <h5>Tyre type</h5>
-                            <p>{data.tyreType}</p>
+                            <p>{data.tyreType == 'null' ? '-' : data.tyreType}</p>
                         </div>
-                        <div className={styles.eachOverview}>
+                        {/* <div className={styles.eachOverview}>
                             <h5>Status</h5>
-                            <p>{data.status}</p>
-                        </div>
+                            <p>{data.status == 'null' ? '-' : data.status}</p>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ import { PopupContext } from '@/Context';
 import AddItemPopup from './AddItemPopup';
 import { GrCloudUpload } from 'react-icons/gr'
 
-const AddNewProduct = ({ title, productData }) => {
+const AddNewProduct = ({ title, setDaskboard }) => {
   // State for file previews
   const [filePreviews, setFilePreviews] = useState([]);
   const [notSaved, setNotSaved] = useState(false)
@@ -21,6 +21,7 @@ const AddNewProduct = ({ title, productData }) => {
     description: '',
     tyreBrand: '',
     // vehicleBrand: '',
+    vehicleType: '',
     tyreRim: '',
     pattern: '',
     tyreSize: '',
@@ -29,12 +30,13 @@ const AddNewProduct = ({ title, productData }) => {
     tyreAspect: '',
     price: '',
     skuCode: '',
-    status: ''
+    status: 'Active'
   });
 
   // State for various dropdown options
   const [tyreBrand, setTyreBrand] = useState([]);
   // const [vehicleBrand, setVehicleBrand] = useState([]);
+  const [vehicleType, setVehicleType] = useState([]);
   const [tyreRim, setTyreRim] = useState([]);
   const [tyrePattern, setTyrePattern] = useState([]);
   const [tyreSize, setTyreSize] = useState([]);
@@ -101,6 +103,16 @@ const AddNewProduct = ({ title, productData }) => {
           //     }));
           //   }
           //   break;
+          case "VehicleType":
+            setVehicleType(array);
+            if (array.length > 0) {
+              // Set the initial value to the first option value
+              setProduct((prevProductData) => ({
+                ...prevProductData,
+                vehicleType: array[0].value,
+              }));
+            }
+            break;
           case "TyreRim":
             setTyreRim(array);
             if (array.length > 0) {
@@ -169,6 +181,7 @@ const AddNewProduct = ({ title, productData }) => {
 
     getData("TyreBrands");
     // getData("VehicleBrand");
+    getData("VehicleType");
     getData("TyreRim");
     getData("TyrePattern");
     getData("TyreSize");
@@ -178,6 +191,7 @@ const AddNewProduct = ({ title, productData }) => {
 
   }, []);
 
+ 
 
 
   // Firebase Storage instance
@@ -219,6 +233,7 @@ const AddNewProduct = ({ title, productData }) => {
         description: product.description,
         tyreBrand: product.tyreBrand,
         // vehicleBrand: product.vehicleBrand,
+        vehicleType: product.vehicleType,
         tyreRim: product.tyreRim,
         tyrePattern: product.tyrePattern,
         tyreSize: product.tyreSize,
@@ -234,6 +249,7 @@ const AddNewProduct = ({ title, productData }) => {
 
       // Add product data to Firestore
       await setDoc(doc(db, "products", product.skuCode), productData);
+      setDaskboard("products")
       // await addDoc(collection(db, 'products', product.skuCode), productData);
 
       // Clear the form fields and file previews after successful submission
@@ -242,6 +258,7 @@ const AddNewProduct = ({ title, productData }) => {
         description: '',
         tyreBrand: '',
         // vehicleBrand: '',
+        vehicleType: '',
         tyreRim: '',
         tyrePattern: '',
         tyreSize: '',
@@ -337,7 +354,7 @@ const AddNewProduct = ({ title, productData }) => {
             )}
             <input
               type="file"
-              accept=".jpg, .jpeg, .png"
+              accept=".png"
               id="uploadImages"
               name="uploadImages"
               placeholder="Select image files"
@@ -414,7 +431,40 @@ const AddNewProduct = ({ title, productData }) => {
               />
             </div>
           </div> */}
-          
+          <div className={styles.medium}>
+            <label htmlFor="vehicleType">Vehicle Type</label>
+            <div className={styles.select}>
+              <select
+                id="vehicleType"
+                name="vehicleType"
+                value={product.vehicleType}
+                onChange={(e) =>
+                  setProduct((prevProductData) => ({
+                    ...prevProductData,
+                    vehicleType: e.target.value,
+                  }))
+                }
+                required
+              >
+                {vehicleType.map((item, key) => (
+                  <option key={key}>{item.value}</option>
+                ))}
+              </select>
+              <IoMdAddCircleOutline
+                className={styles.addIcon}
+                onClick={() => {
+                  setPopupActive(true);
+                  setPopupData((prevPopupData) => ({
+                    ...prevPopupData,
+                    id: vehicleType.length,
+                    popupTitle: "Vehicle Type",
+                    docName: "VehicleType",
+                  }));
+                }}
+              />
+            </div>
+          </div>
+
           <div className={styles.medium}>
             <label htmlFor="tyreRim">Rim Size</label>
             <div className={styles.select}>

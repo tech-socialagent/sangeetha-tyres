@@ -122,6 +122,14 @@
     width: 80%;
 }
 
+.inputForm label{
+    display: flex;
+}
+.currentValue{
+    margin-left: 4px;
+    color: var(--Orange);
+}
+
 .addIcon {
     width: 20%;
     font-size: 35px;

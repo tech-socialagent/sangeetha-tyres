@@ -23,6 +23,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
     // State for various dropdown options
     const [tyreBrand, setTyreBrand] = useState([]);
     // const [vehicleBrand, setVehicleBrand] = useState([]);
+    const [vehicleType, setVehicleType] = useState([]);
     const [tyreRim, setTyreRim] = useState([]);
     const [tyrePattern, setTyrePattern] = useState([]);
     const [tyreSize, setTyreSize] = useState([]);
@@ -71,85 +72,33 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                 switch (collectionName) {
                     case "TyreBrands":
                         setTyreBrand(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyreBrand: array[0].value,
-                            }));
-                        }
                         break;
                     // case "VehicleBrand":
                     //     setVehicleBrand(array);
-                    //     if (array.length > 0) {
-                    //         // Set the initial value to the first option value
-                    //         setProduct((prevProductData) => ({
-                    //             ...prevProductData,
-                    //             vehicleBrand: array[0].value,
-                    //         }));
-                    //     }
                     //     break;
+
+                    case "VehicleType":
+                        setVehicleType(array);
+                        break;
 
                     case "TyreRim":
                         setTyreRim(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyreRim: array[0].value,
-                            }));
-                        }
                         break;
 
                     case "TyrePattern":
                         setTyrePattern(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyrePattern: array[0].value,
-                            }));
-                        }
                         break;
                     case "TyreSize":
                         setTyreSize(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyreSize: array[0].value,
-                            }));
-                        }
                         break;
                     case "TyreType":
                         setTyreType(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyreType: array[0].value,
-                            }));
-                        }
                         break;
                     case "TyreWidth":
                         setTyreWidth(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyreWidth: array[0].value,
-                            }));
-                        }
                         break;
                     case "TyreAspect":
                         setTyreAspect(array);
-                        if (array.length > 0) {
-                            // Set the initial value to the first option value
-                            setProduct((prevProductData) => ({
-                                ...prevProductData,
-                                tyreAspect: array[0].value,
-                            }));
-                        }
                         break;
                     default:
                         break;
@@ -159,6 +108,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
 
         getData("TyreBrands");
         // getData("VehicleBrand");
+        getData("VehicleType");
         getData("TyreRim");
         getData("TyrePattern");
         getData("TyreSize");
@@ -202,6 +152,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             description: product.description,
             tyreBrand: product.tyreBrand,
             // vehicleBrand: product.vehicleBrand,
+            vehicleType: product.vehicleType,
             tyreRim: product.tyreRim,
             tyrePattern: product.tyrePattern,
             tyreSize: product.tyreSize,
@@ -224,6 +175,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             description: '',
             tyreBrand: '',
             // vehicleBrand: '',
+            vehicleType: '',
             tyreRim: '',
             tyrePattern: '',
             tyreSize: '',
@@ -365,17 +317,18 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="tyreBrand">Tyre Brand</label>
+                        <label htmlFor="tyreBrand">Tyre Brand:<div className={styles.currentValue}>{productData.tyreBrand}</div></label>
                         <div className={styles.select}>
                             <select
                                 id="tyrebrand"
                                 name="tyrebrand"
                                 value={product.tyreBrand}
-                                onChange={(e) =>
+                                onChange={(e) => {
                                     setProduct((prevProductData) => ({
                                         ...prevProductData,
                                         tyreBrand: e.target.value,
-                                    }))
+                                    })), setNotSaved(true)
+                                }
                                 }
                                 required
                             >
@@ -393,6 +346,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                                         popupTitle: "Tyre Brand",
                                         docName: "TyreBrands",
                                     }));
+
                                 }}
                             />
                         </div>
@@ -433,17 +387,54 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div> */}
 
                     <div className={styles.medium}>
-                        <label htmlFor="tyreRim">Rim Size</label>
+                        <label htmlFor="vehicleType">Vehicle Type:<div className={styles.currentValue}>{productData.vehicleType}</div></label>
+                        {console.log("product.vehicleType", product)}
+                        <div className={styles.select}>
+                            <select
+                                id="vehicleType"
+                                name="vehicleType"
+                                value={product.vehicleType}
+                                onChange={(e) => {
+                                    setProduct((prevProductData) => ({
+                                        ...prevProductData,
+                                        vehicleType: e.target.value,
+                                    })), setNotSaved(true)
+                                }
+                                }
+                                required
+                            >
+                                {vehicleType.map((item, key) => (
+                                    <option key={key}>{item.value}</option>
+                                ))}
+                            </select>
+                            <IoMdAddCircleOutline
+                                className={styles.addIcon}
+                                onClick={() => {
+                                    setPopupActive(true);
+                                    setPopupData((prevPopupData) => ({
+                                        ...prevPopupData,
+                                        id: vehicleType.length,
+                                        popupTitle: "Vehicle Type",
+                                        docName: "VehicleType",
+                                    }));
+                                }}
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.medium}>
+                        <label htmlFor="tyreRim">Rim Size:<div className={styles.currentValue}>{productData.tyreRim}</div></label>
                         <div className={styles.select}>
                             <select
                                 id="tyreRim"
                                 name="tyreRim"
                                 value={product.tyreRim}
-                                onChange={(e) =>
+                                onChange={(e) => {
                                     setProduct((prevProductData) => ({
                                         ...prevProductData,
                                         tyreRim: e.target.value,
-                                    }))
+                                    })), setNotSaved(true)
+                                }
                                 }
                                 required
                             >
@@ -465,19 +456,20 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                             />
                         </div>
                     </div>
-                    
+
                     <div className={styles.medium}>
-                        <label htmlFor="Pattern">Tyre Pattern</label>
+                        <label htmlFor="Pattern">Tyre Pattern:<div className={styles.currentValue}>{productData.tyrePattern}</div></label>
                         <div className={styles.select}>
                             <select
-                                id="vehicleBrand"
-                                name="vehicleBrand"
+                                id="Pattern"
+                                name="Pattern"
                                 value={product.tyrePattern}
-                                onChange={(e) =>
+                                onChange={(e) => {
                                     setProduct((prevProductData) => ({
                                         ...prevProductData,
                                         tyrePattern: e.target.value,
-                                    }))
+                                    })), setNotSaved(true)
+                                }
                                 }
                                 required
                             >
@@ -491,9 +483,9 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                                     setPopupActive(true);
                                     setPopupData((prevPopupData) => ({
                                         ...prevPopupData,
-                                        id: vehicleBrand.length,
-                                        popupTitle: "Vehicle Brand",
-                                        docName: "VehicleBrand",
+                                        id: tyrePattern.length,
+                                        popupTitle: "Tyre Pattern",
+                                        docName: "TyrePattern",
                                     }));
                                 }}
                             />
@@ -501,17 +493,18 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="tyreSize">Tyre Size</label>
+                        <label htmlFor="tyreSize">Tyre Size:<div className={styles.currentValue}>{productData.tyreSize}</div></label>
                         <div className={styles.select}>
                             <select
                                 id="tyreSize"
                                 name="tyreSize"
                                 value={product.tyreSize}
-                                onChange={(e) =>
+                                onChange={(e) => {
                                     setProduct((prevProductData) => ({
                                         ...prevProductData,
                                         tyreSize: e.target.value,
-                                    }))
+                                    })), setNotSaved(true)
+                                }
                                 }
                                 required
                             >
@@ -535,7 +528,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="price">Price</label>
+                        <label htmlFor="price">Price:<div className={styles.currentValue}>{productData.price}</div></label>
                         <input
                             type="text"
                             id="price"
@@ -554,7 +547,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="tyreType">Tyre Type</label>
+                        <label htmlFor="tyreType">Tyre Type:<div className={styles.currentValue}>{productData.tyreType}</div></label>
                         <div className={styles.select}>
                             <select
                                 id="tyreType"
@@ -589,7 +582,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="tyreWidth">Tyre Width</label>
+                        <label htmlFor="tyreWidth">Tyre Width:<div className={styles.currentValue}>{productData.tyreWidth}</div></label>
                         <div className={styles.select}>
                             <select
                                 id="tyreWidth"
@@ -624,7 +617,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="tyreAspect">Tyre Aspect</label>
+                        <label htmlFor="tyreAspect">Tyre Aspect:<div className={styles.currentValue}>{productData.tyreAspect}</div></label>
                         <div className={styles.select}>
                             <select
                                 id="tyreAspect"
@@ -659,7 +652,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                     </div>
 
                     <div className={styles.medium}>
-                        <label htmlFor="skuCode">SKU Code</label>
+                        <label htmlFor="skuCode">SKU Code:<div className={styles.currentValue}>{productData.skuCode}</div></label>
                         <input
                             type="text"
                             id="skuCode"
