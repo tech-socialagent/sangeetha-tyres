@@ -65,7 +65,7 @@ const Testimonials = () => {
     ];
 
     return (
-        <div className={styles.testWrap}>
+        <div className={styles.testWrap} id='Testimonials' >
             <SectionHeader title='Testimonials' desc='Combining the expertise of top tyre brands with our exceptional service for an unparalleled experience.' />
             <div className={styles.sliderContainer}>
                 <Slider {...settings} className={styles.ReviewContainer}>

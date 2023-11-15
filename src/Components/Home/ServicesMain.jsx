@@ -5,10 +5,12 @@ import Image from 'next/image';
 import { serviceData } from '@/data';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
+import { useRouter } from 'next/router';
 
 const ServicesMain = () => {
 
     const scrl = useRef();
+    const router = useRouter();
 
     const slide = (shift) => {
         const scrollOptions = {
@@ -25,7 +27,9 @@ const ServicesMain = () => {
                 <div className={styles.left}><span onClick={() => slide(-310)}><IoIosArrowDropleftCircle /></span></div>
                 <div className={styles.servicesContainer} ref={scrl}>
                     {serviceData.map((item) => (
-                        <div className={styles.eachService}>
+                        <div className={styles.eachService}
+                        onClick={()=> router.push(`/services/${item.id}`)}
+                        >
                             <div className={styles.eachImageContainer}>
                                 <Image src={item.serviceImage} alt='Service' width={1000} height={1000} className={styles.eachImage} />
                                 <button className={styles.serviceBooking}>Book now</button>
@@ -42,7 +46,7 @@ const ServicesMain = () => {
             </div>
             <div className={styles.textContainer}>
                 <div className={styles.text}>
-                    <h2>Our tires are pros at the 'age-defying' game – they just keep rolling back the years</h2>
+                    <h2 id='howWeWork' >Our tires are pros at the 'age-defying' game – they just keep rolling back the years</h2>
                 </div>
             </div>
         </div>

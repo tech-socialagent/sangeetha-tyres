@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '@/styles/Home/Header.module.css';
 import logoVdo from '../../../public/assests/bannerVdo.mp4';
+import Link from 'next/link';
 
 const Header = () => {
     return (
@@ -11,7 +12,7 @@ const Header = () => {
                     <h5>YOUR ONE-STOP</h5>
                     <h1>Experience top-notch services: Wheel Alignment, Wheel Balancing, Tyre Fitting, AC Gas Refill, Engine Carbon Cleaning.</h1>
                 </div>
-                <button className={styles.headerBtn}>BOOK AN APPOINTMENT</button>
+                <button className={styles.headerBtn}><Link href='tel:+919939935899'>Book an appointment</Link></button>
             </div>
         </div>
     )

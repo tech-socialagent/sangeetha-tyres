@@ -79,6 +79,10 @@ button{
     cursor: pointer;
 }
 
+.logo{
+    font-size: 32px;
+}
+
 @media (max-width: 1200px) {
     :root {
         --Para: 14px;

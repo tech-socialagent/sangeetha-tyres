@@ -22,23 +22,18 @@ const ProductListing = () => {
 
     const [mobileFilter, setMobileFilter] = useState(false)
     const router = useRouter();
-    // const tyreBrandParam = router.query.tyreBrand;
-
     const { tyreBrandParam, widthParam, sizeParam, rimParam } = router.query;
-
 
     const readData = async () => {
         let array = [];
         let q = collection(db, 'products');
 
-        // Apply the filter condition for selected Tyre Brands
-        if (selectedTyreBrands.length > 0) {
+        if (selectedTyreBrands && selectedTyreBrands.length > 0) {
             q = query(q, where('status', '==', 'Active'), where('tyreBrand', 'in', selectedTyreBrands));
         } else {
             q = query(q, where('status', '==', 'Active'));
         }
 
-        // Apply the filter condition for selected Vehicle Types
         if (selectedVehicleBrands.length > 0) {
             q = query(q, where('vehicleType', 'in', selectedVehicleBrands));
         }
@@ -62,33 +57,12 @@ const ProductListing = () => {
             q = query(q, where('tyreRim', 'in', selectedTyreRim));
         }
 
-        // Apply other filters based on URL parameters
-        if (tyreBrandParam) {
-            q = query(q, where('tyreBrand', '==', tyreBrandParam));
-            // setSelectedTyreBrands(tyreBrand)
-        }
-        if (widthParam) {
-            q = query(q, where('tyreWidth', '==', widthParam));
-        }
-        if (sizeParam) {
-            q = query(q, where('tyreSize', '==', sizeParam));
-        }
-        if (rimParam) {
-            q = query(q, where('tyreRim', '==', rimParam));
-            // setSelectedTyreRim(rim)
-        }
-
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             array.push(doc.data());
         });
         setData(array);
     };
-
-
-    useEffect(() => {
-        readData();
-    }, [selectedTyreBrands, selectedVehicleBrands, selectedTyreAspects, selectedTyreWidths, selectedTyreTypes, selectedTyreSizes, selectedTyrePatterns, selectedTyreRim]);
 
     const [tyreBrand, setTyreBrand] = useState([]);
     const [vehicleType, setVehicleType] = useState([]);
@@ -150,6 +124,34 @@ const ProductListing = () => {
         getData('TyreAspect');
     }, []);
 
+    useEffect(() => {
+       
+        if (router.query) {
+            if (tyreBrandParam) {
+                setSelectedTyreBrands(oldArray => [...oldArray, tyreBrandParam]);
+            }
+
+            if (widthParam) {
+                setSelectedTyreWidths(oldArray => [...oldArray, widthParam]);
+            }
+            if (sizeParam) {
+                setSelectedTyreSizes(oldArray => [...oldArray, sizeParam]);
+            }
+            if (rimParam) {
+                setSelectedTyreRim(oldArray => [...oldArray, rimParam]);
+            }
+        }
+    }, [router.query]);
+
+    useEffect(() => {
+        readData();
+    }, [
+        selectedTyreBrands, selectedVehicleBrands,
+        selectedTyreAspects, selectedTyreWidths,
+        selectedTyreTypes, selectedTyreSizes,
+        selectedTyrePatterns, selectedTyreRim
+    ]);
+
     const toggleFilter = (filterTitle) => {
         setExpandedFilters((prevFilters) => {
             if (prevFilters.includes(filterTitle)) {
@@ -161,6 +163,7 @@ const ProductListing = () => {
     };
 
     const handleTyreBrandChange = (brand) => {
+        console.log("test");
         setSelectedTyreBrands((prevSelectedBrands) => {
             if (prevSelectedBrands.includes(brand)) {
                 return prevSelectedBrands.filter((selectedBrand) => selectedBrand !== brand);
@@ -171,7 +174,6 @@ const ProductListing = () => {
     };
 
     const handleVehicleTypeChange = (value) => {
-        console.log("value", value);
         setSelectedVehicleBrands((prevSelectedBrands) => {
             if (prevSelectedBrands.includes(value)) {
                 return prevSelectedBrands.filter((selectedBrand) => selectedBrand !== value);
@@ -243,11 +245,11 @@ const ProductListing = () => {
         });
     };
 
-    const renderFilter = (filterName, items, onChange, selectedPrama) => (
+    const renderFilter = (filterName, items, onChange, selectedParam) => (
         <div className={styles.filter}>
             <div className={styles.filterTitle} onClick={() => toggleFilter(filterName)}>
                 {filterName}
-                <button >
+                <button>
                     {expandedFilters.includes(filterName) ? (
                         <AiFillCloseCircle className={styles.closeIcon} />
                     ) : (
@@ -258,15 +260,14 @@ const ProductListing = () => {
             {expandedFilters.includes(filterName) && (
                 <form action="" style={{ display: 'flex', flexDirection: 'column' }}>
                     {items.map((item, key) => (
-                        <div key={key} className={styles.checkboxWrap} >
+                        <div key={key} className={styles.checkboxWrap}>
                             <input
                                 type="checkbox"
                                 id={`${filterName}_${key}`}
                                 name={`${filterName}_${key}`}
                                 value={item.value}
                                 onChange={() => onChange(item.value)}
-                                checked={selectedPrama == item.value ? true : ''}
-                            // checked={selectedItems && selectedItems.includes(item.value)}
+                                defaultChecked={selectedParam === item.value}
                             />
                             <label htmlFor={`${filterName}_${key}`}>{item.value}</label>
                         </div>
@@ -277,9 +278,7 @@ const ProductListing = () => {
     );
 
     const handleClearFilters = () => {
-        console.log("clear");
         setMobileFilter(false);
-        // Reset all filter selections
         setSelectedTyreBrands([]);
         setSelectedVehicleBrands([]);
         setSelectedTyreAspects([]);
@@ -288,7 +287,7 @@ const ProductListing = () => {
         setSelectedTyreSizes([]);
         setSelectedTyrePatterns([]);
         setSelectedTyreRim([]);
-        // Uncheck all checkboxes
+
         document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
             checkbox.checked = false;
         });
@@ -297,6 +296,7 @@ const ProductListing = () => {
     return (
         <div className={styles.sectionWrap}>
             <div className={styles.filterWrap} id="child">
+                <p>{selectedTyreBrands}</p>
                 <button className={styles.clearBtn} onClick={handleClearFilters}>
                     Clear Filter
                 </button>
@@ -310,7 +310,8 @@ const ProductListing = () => {
                 {renderFilter('Tyre Aspects', tyreAspect, handleTyreAspectChange)}
             </div>
             <div className={styles.mobileFilterWrap} id="child">
-                <div className={styles.filterIcon}
+                <div
+                    className={styles.filterIcon}
                     onClick={() => setMobileFilter(true)}
                 >
                     <LuFilter />
@@ -338,7 +339,6 @@ const ProductListing = () => {
                     {renderFilter('Tyre Widths', tyreWidth, handleTyreWidthChange)}
                     {renderFilter('Tyre Aspects', tyreAspect, handleTyreAspectChange)}
                 </div>
-
             </div>
             <div className={styles.productList}>
                 {data.map((item) => (

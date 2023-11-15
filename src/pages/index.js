@@ -28,7 +28,7 @@ export default function Home() {
         <Navbar />
         <Header />
         <HeaderMarquee />
-        <Search />
+        {/* <Search /> */}
         <ServicesMain />
         <HowWeWork />
         <CarSection />

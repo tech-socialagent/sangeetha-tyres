@@ -29,7 +29,7 @@ const TyreBrands = () => {
     ];
 
     return (
-        <div className="">
+        <div className="" id='brand' >
             <div className={styles.sectionWrap}>
                 <SectionHeader title='Tyre Brands' desc='Fuel your ride with top tyre brand expertise and our exceptional service for an unparalleled experience' />
                 <div className={styles.brandList}>

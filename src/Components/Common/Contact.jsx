@@ -27,7 +27,7 @@ const Contact = () => {
                         Survey No 03, Village Krishnasagara, Attibele Anekal, Hobli, beside Nayara Fuel Station, Bengaluru, Karnataka 562107
                     </div>
                     <div className={styles.map}>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.9238165230786!2d77.65086047463102!3d12.912617916169593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae156ddcc9e49f%3A0x9dc40c60fec016a0!2sSocial%20Agent!5e0!3m2!1sen!2sin!4v1696272188631!5m2!1sen!2sin" allowFullScreen={true} referrerPolicy="no-referrer"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.9166712053657!2d77.7540662!3d12.7839207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae719c77b7ee79%3A0x5c6f7542b16a45f6!2sBridgestone%20Select%20-%20Sangeetha%20Tyre%20Solutions%20PVT.%20LTD!5e0!3m2!1sen!2sin!4v1700074257256!5m2!1sen!2sin" allowFullScreen={true} referrerPolicy="no-referrer"></iframe>
                     </div>
                     <div className={styles.info}>
                         <div className={styles.infoWrap}>
@@ -36,19 +36,19 @@ const Contact = () => {
                         </div>
                         <div className={styles.infoWrap}>
                             <BiPhoneCall className={styles.icon} />
-                            <Link className={styles.infoLink} href=''><u>07942568832</u></Link>
+                            <Link className={styles.infoLink} href='tel:+919939935899'><u>+91 9939935899</u></Link>
                         </div>
-                        <div className={styles.infoWrap}>
+                        {/* <div className={styles.infoWrap}>
                             <AiOutlineMail className={styles.icon} />
                             <Link className={styles.infoLink} href=''>Demo@gmail.com</Link>
-                        </div>
+                        </div> */}
                     </div>
-                    <div className={styles.socialMedia}>
+                    {/* <div className={styles.socialMedia}>
                         <Link href="" className={styles.socialIcon}><AiFillInstagram /></Link>
                         <Link href="" className={styles.socialIcon}><AiOutlineTwitter /></Link>
                         <Link href="" className={styles.socialIcon}><FaFacebook /></Link>
                         <Link href="" className={styles.socialIcon}><AiFillYoutube /></Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

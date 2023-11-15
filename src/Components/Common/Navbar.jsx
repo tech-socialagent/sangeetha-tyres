@@ -10,6 +10,7 @@ import { BiMenuAltRight } from 'react-icons/bi';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import db from '../../FirebaseConfig'
+import logo from '../../../public/logo.png'
 
 const Navbar = () => {
 
@@ -43,7 +44,8 @@ const Navbar = () => {
         <>
             <div className={styles.navbarWrap}>
                 <div className={styles.navbarTop}>
-                    <Image src='' alt='TYRES' width={1000} height={1000} className={styles.navbarLogo} />
+                    {/* <div className='logo' >Sangeetha Tyre</div> */}
+                     <Image src={logo} style={{objectFit: 'contain'}} alt='TYRES' width={1000} height={1000} className={styles.navbarLogo} />
                     <ul className={styles.navbarMenus}>
                         <Link href='/'>
                             <li style={{ color: currentURL === '/' ? 'var(--Orange)' : '#000' }}>Home</li>
@@ -51,9 +53,9 @@ const Navbar = () => {
                         <Link href='/services'>
                             <li style={{ color: page === '/services' || page === '/services/[service]' ? 'var(--Orange)' : '#000' }}>Services</li>
                         </Link>
-                        <Link href='/products'>
+                        {/* <Link href='/products'>
                             <li style={{ color: page === '/products' || page === '/products/[product]' ? 'var(--Orange)' : '#000' }}>Product</li>
-                        </Link>
+                        </Link> */}
                         <Link href='/#contactUs'>
                             <li style={{ color: currentURL === '/#contactUs' ? 'var(--Orange)' : '#000' }}>Contact us</li>
                         </Link>
@@ -75,29 +77,29 @@ const Navbar = () => {
                                     <Link href='/services'>
                                         <li style={{ color: page === '/services' || page === '/services/[service]' ? 'var(--Orange)' : '#000' }} onClick={() => setNavbarOpen(false)}>Services</li>
                                     </Link>
-                                    <Link href='/products'>
+                                    {/* <Link href='/products'>
                                         <li style={{ color: page === '/services' || page === '/services/[service]' ? 'var(--Orange)' : '#000' }} onClick={() => setNavbarOpen(false)}>Services</li>
-                                    </Link>
+                                    </Link> */}
                                     <Link href='/#contactUs'>
                                         <li style={{ color: currentURL === '/#contactUs' ? 'var(--Orange)' : '#000' }} onClick={() => setNavbarOpen(false)}>Contact us</li>
                                     </Link>
                                 </div>
-                                <div className={styles.brandsPhone}>
-                                    <h5>Explore Brands</h5>
-                                    {brandsData.map((item, id) => (
-                                        <div className={styles.brandPhone} key={id} onClick={() => setNavbarOpen(false)}>
-                                            <Image src={item.image} alt='Brand' width={1000} height={1000} className={styles.brandPhoneImage} />
-                                            {/* <span>{item.value}</span> */}
-                                        </div>
-                                    ))}
-                                </div>
+                                {/* <div className={styles.brandsPhone}> */}
+                                {/* <h5>Explore Brands</h5> */}
+                                {/* {brandsData.map((item, id) => ( */}
+                                {/* <div className={styles.brandPhone} key={id} onClick={() => setNavbarOpen(false)}> */}
+                                {/* <Image src={item.image} alt='Brand' width={1000} height={1000} className={styles.brandPhoneImage} /> */}
+                                {/* <span>{item.value}</span> */}
+                                {/* </div> */}
+                                {/* ))} */}
+                                {/* </div> */}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={styles.navbarBottom}>
                     <div className={styles.BottomLeft}>
-                        <div className={styles.brands} onClick={() => setBrandOpen(!brandOpen)}>
+                        {/* <div className={styles.brands} onClick={() => setBrandOpen(!brandOpen)}>
                             <p>Explore Brands</p>
                             <span
                                 style={{ transform: brandOpen ? 'rotate(180deg)' : 'rotate(0)' }}
@@ -111,15 +113,21 @@ const Navbar = () => {
                                         className={styles.brand} key={id} >
                                         <Image src={item.image} alt='Brand' width={1000} height={1000} className={styles.brandImage} />
                                         {/* <span>{item.value}</span> */}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className={styles.center}>
-                            <p>Tyre re-tread center</p>
+                        {/* </div>
+                                {/* ))} */}
+                        {/* </div>
+                        </div>  */}
+                        {/* <div className={styles.center}> */}
+                        <div className={styles.brands}>
+                            <Link
+                                target='_blank'
+                                href='https://brandshops.jktyre.com/retread-centers/jk-retread-center-sangeetha-tyre-tyre-shop-attibele-bengaluru-175365/Home?utm_source=locator&utm_medium=googleplaces' >
+                                <p>Tyre re-tread center</p>
+                            </Link>
                         </div>
                     </div>
-                    <button className={styles.navbarBtn}>Book an appointment</button>
+
+                    <button className={styles.navbarBtn}><Link href='tel:+919939935899'>Book an appointment</Link></button>
                 </div>
             </div>
             <div className={styles.spacer}></div>

@@ -5,6 +5,8 @@ import { serviceData } from '../../data'
 import { useEffect, useState } from 'react'
 import AllServices from '@/Components/Services/allServices'
 import ServiceCard from '@/Components/Services/ServiceCard'
+import Navbar from '@/Components/Common/Navbar'
+import Footer from '@/Components/Common/Footer'
 
 export default function Home() {
     const route = useRouter();
@@ -33,9 +35,11 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <>
+                <Navbar />
                 <ServiceHero data={data} />
                 <ServiceCard data={data} />
-                <AllServices text={false}/>
+                <AllServices text={false} />
+                <Footer />
             </>
         </>
     )
