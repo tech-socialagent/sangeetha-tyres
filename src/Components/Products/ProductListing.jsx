@@ -163,7 +163,6 @@ const ProductListing = () => {
     };
 
     const handleTyreBrandChange = (brand) => {
-        console.log("test");
         setSelectedTyreBrands((prevSelectedBrands) => {
             if (prevSelectedBrands.includes(brand)) {
                 return prevSelectedBrands.filter((selectedBrand) => selectedBrand !== brand);

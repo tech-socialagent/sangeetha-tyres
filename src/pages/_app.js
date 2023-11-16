@@ -11,7 +11,6 @@ export default function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log("router.pathname", router);
     if (router.asPath != '/#contactUs') {
       setLoading(true)
       setTimeout(async () => {

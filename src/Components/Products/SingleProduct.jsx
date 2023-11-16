@@ -11,7 +11,6 @@ const SingleProduct = ({ data }) => {
 
     useEffect(() => {
         setCenter(data.images ? data.images[0] : null)
-        console.log("data", data);
     }, [data])
 
     const readData = async () => {
@@ -19,9 +18,7 @@ const SingleProduct = ({ data }) => {
             const q = query(collection(db, "TyreBrands"), where("value", "==", data.tyreBrand));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-                // array.push()
                 setTyreBrand(doc.data());
-                // console.log("tyreBrand", tyreBrand);
             });
         }
     }
