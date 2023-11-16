@@ -12,7 +12,7 @@ const Header = () => {
                     <h5>YOUR ONE-STOP</h5>
                     <h1>Experience top-notch services: Wheel Alignment, Wheel Balancing, Tyre Fitting, AC Gas Refill, Engine Carbon Cleaning.</h1>
                 </div>
-                <button className={styles.headerBtn}><Link href='tel:+919939935899'>Book an appointment</Link></button>
+                <Link href='tel:+919939935899'><button className={styles.headerBtn}>Book an appointment</button></Link>
             </div>
         </div>
     )

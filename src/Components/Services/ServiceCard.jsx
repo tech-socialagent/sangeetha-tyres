@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '@/styles/Services/serviceCard.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ServiceCard = ({ data }) => {
     if (!data) {
@@ -10,8 +11,8 @@ const ServiceCard = ({ data }) => {
         <div className={styles.cardWrap}>
             <div className={styles.cards}>
                 {data.card.map((data, id) => (
-                    <div className={ id === 1 ? styles.secondCard : styles.eachCard}>
-                    {/* <div className={ styles.eachCard}> */}
+                    <div className={id === 1 ? styles.secondCard : styles.eachCard}>
+                        {/* <div className={ styles.eachCard}> */}
                         <Image src={data.cardImg} alt='card iamge' width={1000} height={1000} className={styles.cardImage} />
                         <div className={styles.cardContent}>
                             <h3>{data.cardTitle}</h3>
@@ -30,7 +31,7 @@ const ServiceCard = ({ data }) => {
                         {/* There will be sapn content */}
                         <h3>{data.bookTitle}</h3>
                         <p>{data.bookDesc}</p>
-                        <button>BOOK AN APPOINTMENT</button>
+                        <Link href='tel:+919939935899'><button> BOOK AN APPOINTMENT</button></Link>
                     </div>
                 </div>
             </div>

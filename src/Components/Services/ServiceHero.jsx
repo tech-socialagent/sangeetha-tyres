@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from '@/styles/Services/ServicesHero.module.css'
 import Image from 'next/image'
+import Link from 'next/link';
 
 const ServiceHero = ({ data }) => {
     if (!data) {
@@ -9,8 +10,8 @@ const ServiceHero = ({ data }) => {
     }
     return (
         <div className={styles.sectionWrap}>
-            <Image src={data.heroImage} alt='image' className={styles.img} width={1000} height={1000}/>
-            <Image src='/assests/Services/background.png' width={1000} height={1000} className={styles.backgroundPic} /> 
+            <Image src={data.heroImage} alt='image' className={styles.img} width={1000} height={1000} />
+            <Image src='/assests/Services/background.png' width={1000} height={1000} className={styles.backgroundPic} />
             <div className={styles.infoCard}>
                 <div className={styles.title}>
                     {/* Precision Balanced: Your <span className={styles.highlight} >Drive Perfected</span> */}
@@ -19,7 +20,7 @@ const ServiceHero = ({ data }) => {
                 <div className={styles.desc}>
                     {data.heroDesc}
                 </div>
-                <button>BOOK AN APPOINTMENT</button>
+                <Link href='tel:+919939935899'><button> BOOK AN APPOINTMENT</button></Link>
             </div>
         </div>
     )
