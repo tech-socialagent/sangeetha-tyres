@@ -6,8 +6,8 @@ import Image from 'next/image';
 
 const HeaderMarquee = () => {
   return (
-    <div class={styles.marqueeWrap}>
-      <div class={styles.marquee}>
+    <div className={styles.marqueeWrap}>
+      <div className={styles.marquee}>
         <span>
           <div className={styles.imageText}>
             <Image src={tyreGIF} alt='gif' className={styles.gifContainer} />
@@ -15,7 +15,7 @@ const HeaderMarquee = () => {
           </div>
         </span>
       </div>
-      <div class={`${styles.marquee} ${styles.marquee2}`}>
+      <div className={`${styles.marquee} ${styles.marquee2}`}>
       <span>
           <div className={styles.imageText}>
             <Image src={car} alt='gif' className={styles.gifContainer} />

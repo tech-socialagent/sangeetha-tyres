@@ -43,25 +43,29 @@ const AddItemPopup = ({ id, popupTitle, docName }) => {
             handleSubmit();
             return; // Do not proceed further
         }
-        else if (image == null) {
-            alert(`Upload Tyre Brand Logo`);
-            return; // Do not proceed further
-        }
         else {
 
             if (docName === "TyreBrands") {
-                const storageRef = ref(storage, `TyreBrand/${image.name}`);
-                await uploadBytes(storageRef, image, metadata);
 
-                // Get the download URL of the uploaded image
-                const downloadURL = await getDownloadURL(storageRef);
+                if (image == null) {
+                    alert(`Upload Tyre Brand Logo`);
+                    return; // Do not proceed further
+                }
+                else {
+                    const storageRef = ref(storage, `TyreBrand/${image.name}`);
+                    await uploadBytes(storageRef, image, metadata);
 
-                // Save the download URL in Firestore
-                const docRef = await addDoc(collection(db, docName), {
-                    value: value,
-                    image: downloadURL,
-                    id: numericId
-                });
+                    // Get the download URL of the uploaded image
+                    const downloadURL = await getDownloadURL(storageRef);
+
+                    // Save the download URL in Firestore
+                    const docRef = await addDoc(collection(db, docName), {
+                        value: value,
+                        image: downloadURL,
+                        id: numericId
+                    });
+                }
+
             }
             else {
                 // Save the data in Firestore

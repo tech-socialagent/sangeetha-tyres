@@ -57,7 +57,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             };
 
             reader.readAsDataURL(file);
-        }
+        }  
     };
 
     // Function to fetch data from Firestore for dropdowns

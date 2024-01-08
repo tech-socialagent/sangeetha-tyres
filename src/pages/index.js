@@ -33,12 +33,12 @@ export default function Home() {
         <HowWeWork />
         <CarSection />
         <TyreBrands />
-        <Rolling />
-        <OurVision />
-        <Testimonials />
-        <Contact />
-        <Faq />
-        <Footer />
+        {/* <Rolling /> */}
+        {/* <OurVision /> */}
+        {/* <Testimonials /> */}
+        {/* <Contact /> */}
+        {/* <Faq /> */}
+        {/* <Footer /> */}
       </>
     </>
   )

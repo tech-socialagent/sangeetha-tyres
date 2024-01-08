@@ -27,7 +27,7 @@ const ServicesMain = () => {
                 <div className={styles.left}><span onClick={() => slide(-310)}><IoIosArrowDropleftCircle /></span></div>
                 <div className={styles.servicesContainer} ref={scrl}>
                     {serviceData.map((item) => (
-                        <div className={styles.eachService}
+                        <div key={item.id} className={styles.eachService}
                         onClick={()=> router.push(`/services/${item.id}`)}
                         >
                             <div className={styles.eachImageContainer}>

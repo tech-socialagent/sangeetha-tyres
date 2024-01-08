@@ -71,6 +71,7 @@ const AddNewProduct = ({ title, setDaskboard }) => {
 
       reader.readAsDataURL(file);
     }
+    
   };
 
   // Function to fetch data from Firestore for dropdowns

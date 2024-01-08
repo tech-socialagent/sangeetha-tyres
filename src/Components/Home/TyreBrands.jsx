@@ -34,7 +34,7 @@ const TyreBrands = () => {
                 <SectionHeader title='Tyre Brands' desc='Fuel your ride with top tyre brand expertise and our exceptional service for an unparalleled experience' />
                 <div className={styles.brandList}>
                     {types.map((item) => (
-                        <div className={styles.imageContainer}>
+                        <div key={item.id} className={styles.imageContainer}>
                             <Image className={styles.img} src={item.image} alt='image' width={1000} height={1000} />
                         </div>
                     ))}
