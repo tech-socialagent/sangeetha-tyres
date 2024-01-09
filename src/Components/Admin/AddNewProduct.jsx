@@ -16,6 +16,7 @@ const AddNewProduct = ({ title, setDaskboard }) => {
   const [loading, setLoading] = useState(false)
 
   // State for product data
+  const timestamp = new Date().getTime();
   const [product, setProduct] = useState({
     title: '',
     description: '',
@@ -29,7 +30,8 @@ const AddNewProduct = ({ title, setDaskboard }) => {
     tyreWidth: '',
     tyreAspect: '',
     price: '',
-    skuCode: '',
+    compareAtPrice: '',
+    skuCode: `SKU${timestamp}`,
     status: 'Active'
   });
 
@@ -71,7 +73,7 @@ const AddNewProduct = ({ title, setDaskboard }) => {
 
       reader.readAsDataURL(file);
     }
-    
+
   };
 
   // Function to fetch data from Firestore for dropdowns
@@ -192,7 +194,7 @@ const AddNewProduct = ({ title, setDaskboard }) => {
 
   }, []);
 
- 
+
 
 
   // Firebase Storage instance
@@ -202,7 +204,10 @@ const AddNewProduct = ({ title, setDaskboard }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
-
+    
+    // Convert compareAtPrice and price to numbers
+    const compareAtPriceNumber = parseFloat(product.compareAtPrice);
+    const priceNumber = parseFloat(product.price);
     // Check if a product with the same SKU code already exists
     const skuCodeQuery = query(
       collection(db, 'products'),
@@ -215,7 +220,12 @@ const AddNewProduct = ({ title, setDaskboard }) => {
       // You can handle this case here (e.g., show an error message)
       setLoading(false)
       alert('A product with the same SKU code already exists.');
-    } else {
+    }
+    else if (product.compareAtPrice < product.price) {
+      setLoading(false)
+      alert('Compare-at price should be greater than Product price')
+    }
+    else {
       // No product with the same SKU code exists, proceed to add the product
 
       // Upload images to Firebase Storage
@@ -242,6 +252,7 @@ const AddNewProduct = ({ title, setDaskboard }) => {
         tyreWidth: product.tyreWidth,
         tyreAspect: product.tyreAspect,
         price: product.price,
+        compareAtPrice: product.compareAtPrice,
         skuCode: product.skuCode,
         status: product.status,
         images: imageUrls,
@@ -267,6 +278,7 @@ const AddNewProduct = ({ title, setDaskboard }) => {
         tyreWidth: '',
         tyreAspect: '',
         price: '',
+        compareAtPrice: '',
         skuCode: '',
       });
       setFilePreviews([]);
@@ -534,6 +546,44 @@ const AddNewProduct = ({ title, setDaskboard }) => {
             </div>
           </div>
 
+
+
+          <div className={styles.medium}>
+            <label htmlFor="price">Price</label>
+            <input
+              type="text"
+              id="price"
+              name="price"
+              placeholder="Enter the Price"
+              onChange={(e) => {
+                setProduct((prevProductData) => ({
+                  ...prevProductData,
+                  price: e.target.value,
+                })), setNotSaved(true)
+              }
+              }
+              required
+            />
+          </div>
+
+          <div className={styles.medium}>
+            <label htmlFor="compareAtPrice">Compare-at Price</label>
+            <input
+              type="text"
+              id="compareAtPrice"
+              name="compareAtPrice"
+              placeholder="Enter the Compare-at Price"
+              onChange={(e) => {
+                setProduct((prevProductData) => ({
+                  ...prevProductData,
+                  compareAtPrice: e.target.value,
+                })), setNotSaved(true)
+              }
+              }
+            // required
+            />
+          </div>
+
           <div className={styles.medium}>
             <label htmlFor="tyreSize">Tyre Size</label>
             <div className={styles.select}>
@@ -568,23 +618,6 @@ const AddNewProduct = ({ title, setDaskboard }) => {
             </div>
           </div>
 
-          <div className={styles.medium}>
-            <label htmlFor="price">Price</label>
-            <input
-              type="text"
-              id="price"
-              name="price"
-              placeholder="Enter the Price"
-              onChange={(e) => {
-                setProduct((prevProductData) => ({
-                  ...prevProductData,
-                  price: e.target.value,
-                })), setNotSaved(true)
-              }
-              }
-              required
-            />
-          </div>
 
           <div className={styles.medium}>
             <label htmlFor="tyreType">Tyre Type</label>
@@ -699,13 +732,14 @@ const AddNewProduct = ({ title, setDaskboard }) => {
               name="skuCode"
               placeholder="Enter the SKU Code"
               value={product.skuCode}
-              onChange={(e) => {
-                setProduct((prevProductData) => ({
-                  ...prevProductData,
-                  skuCode: e.target.value,
-                })), setNotSaved(true)
-              }
-              }
+              disabled
+              // onChange={(e) => {
+              //   setProduct((prevProductData) => ({
+              //     ...prevProductData,
+              //     skuCode: e.target.value,
+              //   })), setNotSaved(true)
+              // }
+              // }
               required
             />
           </div>

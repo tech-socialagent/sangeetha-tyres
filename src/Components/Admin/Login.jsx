@@ -39,7 +39,7 @@ const Login = ({ setUser }) => {
         <div className={styles.inputWrap}>
           <label htmlFor="password">Password</label>
           <input
-            type="pri"
+            type="password"
             id="password" // Add an 'id' attribute to the input
             placeholder="Please Enter The Password"
             value={password} // Bind the 'password' state to the input value

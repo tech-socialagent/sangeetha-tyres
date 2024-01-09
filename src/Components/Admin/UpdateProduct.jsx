@@ -57,7 +57,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             };
 
             reader.readAsDataURL(file);
-        }  
+        }
     };
 
     // Function to fetch data from Firestore for dropdowns
@@ -128,7 +128,20 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
         e.preventDefault();
         setLoading(true)
 
-        // No product with the same SKU code exists, proceed to add the product
+        // Convert compareAtPrice and price to numbers
+        const compareAtPriceNumber = parseFloat(product.compareAtPrice);
+        const priceNumber = parseFloat(product.price);
+
+        // Check if compareAtPrice is greater than price
+        if (compareAtPriceNumber < priceNumber) {
+            setLoading(false);
+            alert('Compare-at price should be greater than Product price');
+            setProduct((prevProductData) => ({
+                ...prevProductData,
+                compareAtPrice: '',
+            }));
+            return;
+        }
 
         // Upload images to Firebase Storage
         let imageUrls = [];
@@ -160,6 +173,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             tyreWidth: product.tyreWidth,
             tyreAspect: product.tyreAspect,
             price: product.price,
+            compareAtPrice: product.compareAtPrice,
             skuCode: product.skuCode,
             images: imageUrls,
             status: product.status,
@@ -183,6 +197,7 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
             tyreWidth: '',
             tyreAspect: '',
             price: '',
+            compareAtPrice: '',
             skuCode: '',
         });
         setFilePreviews([]);
@@ -492,6 +507,45 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                         </div>
                     </div>
 
+
+
+                    <div className={styles.medium}>
+                        <label htmlFor="price">Price:<div className={styles.currentValue}>{productData.price}</div></label>
+                        <input
+                            type="text"
+                            id="price"
+                            name="price"
+                            placeholder="Enter the Price"
+                            value={product.price}
+                            onChange={(e) => {
+                                setProduct((prevProductData) => ({
+                                    ...prevProductData,
+                                    price: e.target.value,
+                                })), setNotSaved(true)
+                            }
+                            }
+                            required
+                        />
+                    </div>
+                    <div className={styles.medium}>
+                        <label htmlFor="compareAtPrice">Compare-at Price:<div className={styles.currentValue}>{productData.compareAtPrice}</div></label>
+                        <input
+                            type="text"
+                            id="compareAtPrice"
+                            name="compareAtPrice"
+                            placeholder="Enter the Compare-at Price"
+                            value={product.compareAtPrice}
+                            onChange={(e) => {
+                                setProduct((prevProductData) => ({
+                                    ...prevProductData,
+                                    compareAtPrice: e.target.value,
+                                })), setNotSaved(true)
+                            }
+                            }
+                        // required
+                        />
+                    </div>
+
                     <div className={styles.medium}>
                         <label htmlFor="tyreSize">Tyre Size:<div className={styles.currentValue}>{productData.tyreSize}</div></label>
                         <div className={styles.select}>
@@ -525,25 +579,6 @@ const UpdateProduct = ({ productData, setEditProduct }) => {
                                 }}
                             />
                         </div>
-                    </div>
-
-                    <div className={styles.medium}>
-                        <label htmlFor="price">Price:<div className={styles.currentValue}>{productData.price}</div></label>
-                        <input
-                            type="text"
-                            id="price"
-                            name="price"
-                            placeholder="Enter the Price"
-                            value={product.price}
-                            onChange={(e) => {
-                                setProduct((prevProductData) => ({
-                                    ...prevProductData,
-                                    price: e.target.value,
-                                })), setNotSaved(true)
-                            }
-                            }
-                            required
-                        />
                     </div>
 
                     <div className={styles.medium}>

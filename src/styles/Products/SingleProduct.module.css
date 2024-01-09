@@ -185,6 +185,11 @@ border-top: none;
     padding: 2%;
     font-size: calc(var(--Para) + 2px);
 }
+.compareAtPrice{
+    font-size: 22px;
+    color: #2d2d2d;
+    text-decoration: line-through;
+}
 
 @media (max-width: 1200px) {
     .productView {

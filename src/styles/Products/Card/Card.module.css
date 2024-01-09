@@ -65,7 +65,11 @@
     padding: 7px 0;
     border-radius: 5px;
 }
-
+.compareAtPrice{
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #232323;
+}
 @media screen and (max-width: 1000px) {
     .eachProduct {
         width: 28vw;

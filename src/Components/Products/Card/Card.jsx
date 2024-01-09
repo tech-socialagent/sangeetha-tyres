@@ -70,7 +70,7 @@ const Card = ({ data }) => {
                     ) : (
                         <div className={styles.loadingPlaceholder}>Loading...</div>
                     )}
-                    <h2>Rs. {formatPrice(data.price)}</h2>
+                    <h2> Rs.  <span className={styles.compareAtPrice} >{formatPrice(data.price)} </span>{formatPrice(data.price)}</h2>
                 </div>
                 <h4>{data.title}</h4>
                 <h4>{data.tyreType}</h4>
