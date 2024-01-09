@@ -94,6 +94,7 @@
     align-items: flex-start;
     gap: 1rem;
     row-gap: 2rem;
+    align-content: flex-start;
 }
 
 /* Filter Styles */
